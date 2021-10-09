@@ -1,4 +1,4 @@
-# watchlist-ui
+# Movie Watchlist (UI)
 =======
 # Getting Started with Create React App
 
