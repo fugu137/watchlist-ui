@@ -1,6 +1,7 @@
+import { Link } from 'react-router-dom';
 import '../../App.css';
 import './Navbar.css';
-import { Link } from 'react-router-dom';
+
 
 function Navbar(props) {
 
@@ -12,6 +13,9 @@ function Navbar(props) {
                         <Link to={link.path}>{link.component.name}</Link>
                     </li>
                 )}
+                <li>
+                    <button onClick={props.logoutHandler}>Logout</button>
+                </li>
             </ul>
         </nav>
     );
