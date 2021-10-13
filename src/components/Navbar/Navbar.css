@@ -6,3 +6,7 @@
     list-style-type: none;
     margin: 20px 35px;
 }
+
+.Navbar__navLink.active {
+    color: red;
+}

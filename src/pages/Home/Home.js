@@ -7,16 +7,52 @@ function Home(props) {
 
     const [movies, setMovies] = useState(null);
 
-    useEffect(() => {
-        console.log("login status changed...")
-        console.log(props.loggedIn)
+    const setLoggedIn = props.statusHandler;
 
-        if (!props.loggedIn) {
-            return;
-        }
+    // useEffect(() => {
+    //     const getPrincipal = async () => {
+    //         const url = 'http://localhost:8080/accounts/principal';
+
+    //         axios({
+    //             method: 'GET',
+    //             url: url,
+    //             withCredentials: true,
+    //             headers: {
+    //                 'Accept': 'application/json',
+    //                 'Access-Control-Allow-Origin': '*',
+    //             }
+    //         })  
+    //             .then(response => {
+    //                 if (response === 204) {
+    //                     setLoggedIn(false);
+    //                 } 
+    //                 if (response === 200) {
+    //                     setLoggedIn(true);
+    //                 }
+    //             })
+    //             .catch(error => console.error("Principal Error:", error));
+    //     }
+
+    //     getPrincipal();
+
+    // }, [setLoggedIn]);
+
+
+    // useEffect(() => {
+    //     console.log(document.cookie);
+    //     console.log(document.location.href);
+    // });
+
+    useEffect(() => {
+        console.log("login status changed...", props.loggedIn)
+
+        // if (!props.loggedIn) {
+        //     setMovies(null);
+        //     return;
+        // }
 
         const loadMovies = async () => {
-            await axios({
+            axios({
                 method: 'GET',
                 url: "http://localhost:8080/movies",
                 withCredentials: true,
@@ -41,9 +77,10 @@ function Home(props) {
     return (
         <div className="Home">
             <h1>Home Page</h1>
-            {props.loggedIn === null
+            {/* {props.loggedIn === null
                 ? <StatusMessage />
-                : <MovieList movies={movies} />}
+                : <MovieList movies={movies} />} */}
+                <MovieList movies={movies} />
         </div>
     );
 }
@@ -55,7 +92,7 @@ function StatusMessage() {
 function MovieList({ movies }) {
 
     if (!movies) {
-        return "Loading...";
+        return <p>"Not logged in..."</p>;
 
     } else {
         return (

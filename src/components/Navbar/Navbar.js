@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import '../../App.css';
 import './Navbar.css';
 
@@ -10,7 +10,13 @@ function Navbar(props) {
             <ul className="Navbar__menuItems">
                 {props.links.map((link, index) =>
                     <li key={index}>
-                        <Link to={link.path}>{link.component.name}</Link>
+                        <NavLink
+                            className="Navbar__navLink"
+                            to={link.path}
+                            exact={link.exact}
+                        >
+                            {link.component.name}
+                        </NavLink>
                     </li>
                 )}
                 <li>

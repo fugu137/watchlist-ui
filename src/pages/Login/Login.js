@@ -6,26 +6,6 @@ import axios from 'axios';
 
 function Login(props) {
 
-    useEffect(() => {
-        const getAuth = async () => {
-            const url = 'http://localhost:8080/accounts/principal';
-
-            axios({
-                method: 'GET',
-                url: url,
-                withCredentials: true,
-                headers: {
-                    'Accept': 'application/json',
-                    'Access-Control-Allow-Origin': '*',
-                }
-            })
-                .catch(error => console.error("Principal Error:", error));
-        }
-
-        getAuth();
-
-    }, []);
-
     return (
         <div className="Login">
             <h1>Login Page</h1>
@@ -49,3 +29,23 @@ export default Login;
     //     props.loginHandler("Michael", "Password123");
 
     // }, [props, history])
+
+    // useEffect(() => {
+    //     const getToken = async () => {
+    //         const url = 'http://localhost:8080/accounts/principal';
+
+    //         axios({
+    //             method: 'GET',
+    //             url: url,
+    //             withCredentials: true,
+    //             headers: {
+    //                 'Accept': 'application/json',
+    //                 'Access-Control-Allow-Origin': '*',
+    //             }
+    //         })
+    //             .catch(error => console.error("Principal Error:", error));
+    //     }
+
+    //     getToken();
+
+    // }, []);
