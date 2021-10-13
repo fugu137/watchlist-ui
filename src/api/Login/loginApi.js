@@ -33,7 +33,7 @@ const LoginApi = {
                 'Content-Type': 'multipart/form-data',
                 // 'Access-Control-Allow-Origin': 'http://localhost:3000',
                 // 'X-XSRF-TOKEN': token,
-                'Cookie': 'XSRF-TOKEN: undefined;',
+                // 'Cookie': 'XSRF-TOKEN: undefined;',
             }
         }
 
