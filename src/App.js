@@ -20,6 +20,11 @@ function App() {
 
     const history = useHistory();
     const [cookies, removeCookie] = useCookies(['XSRF-TOKEN']);
+    // console.log(cookies)
+
+    // removeCookie('XSRF-TOKEN'); // needed to avoid issue with logging in again straight after logout
+    // console.log(cookies)
+
 
     const [status, setLoggedIn] = useState(null);
 
@@ -29,7 +34,7 @@ function App() {
 
     const login = async (username, password) => {
         const token = cookies['XSRF-TOKEN'];
-        console.log("Token without removal", token);
+        // console.log("Token without removal", token);
         // removeCookie('XSRF-TOKEN');
         // console.log("Token after", token);
 
@@ -48,7 +53,7 @@ function App() {
     const logout = async () => {
         const token = cookies['XSRF-TOKEN'];
 
-        LoginApi.logout(token)
+        LoginApi.logout()
                 .then(response => {
                     if (response.status === 200) {
                         setLoggedIn(false);
