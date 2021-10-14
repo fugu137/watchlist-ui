@@ -1,15 +1,13 @@
-import baseURL from "../baseUrl";
+import axios from 'axios';
 
 
 const MovieApi = {
 
     loadMovies: async () => {
-        const url = `${baseURL}/movies`
 
         const options = {
             method: 'GET',
-            url: url,
-            withCredentials: true,
+            url: '/movies',
         }
 
         return await axios(options);

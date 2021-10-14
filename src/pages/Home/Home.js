@@ -1,78 +1,25 @@
 import '../../App.css';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
+import MovieApi from '../../api/Movies/movieApi';
 
 
 function Home(props) {
 
     const [movies, setMovies] = useState(null);
 
-    const setLoggedIn = props.handleStatus;
-
-    // useEffect(() => {
-    //     const getPrincipal = async () => {
-    //         const url = 'http://localhost:8080/accounts/principal';
-
-    //         axios({
-    //             method: 'GET',
-    //             url: url,
-    //             withCredentials: true,
-    //             headers: {
-    //                 'Accept': 'application/json',
-    //                 'Access-Control-Allow-Origin': '*',
-    //             }
-    //         })  
-    //             .then(response => {
-    //                 if (response === 204) {
-    //                     setLoggedIn(false);
-    //                 } 
-    //                 if (response === 200) {
-    //                     setLoggedIn(true);
-    //                 }
-    //             })
-    //             .catch(error => console.error("Principal Error:", error));
-    //     }
-
-    //     getPrincipal();
-
-    // }, [setLoggedIn]);
-
-
-    // useEffect(() => {
-    //     console.log(document.cookie);
-    //     console.log(document.location.href);
-    // });
-
     useEffect(() => {
-        console.log("login status changed...", props.loggedIn)
 
-        // if (!props.loggedIn) {
-        //     setMovies(null);
-        //     return;
-        // }
-
-        const loadMovies = async () => {
-            axios({
-                method: 'GET',
-                url: "http://localhost:8080/movies",
-                withCredentials: true,
-                headers: {
-                    'Accept': 'application/json',
-                    'Access-Control-Allow-Origin': '*',
-                }
-            })
+        MovieApi.loadMovies()
                 .then(response => {
-                    console.log(response.data)
                     setMovies(response.data);
                 })
                 .catch(error => {
                     console.error("Movies error: ", error.response)
                     setMovies([]);
                 })
-        }
-        loadMovies();
 
-    }, [props.loggedIn])
+    }, [props.loggedIn]);
 
     return (
         <div className="Home">
