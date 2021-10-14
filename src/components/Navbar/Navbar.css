@@ -1,3 +1,11 @@
+.Navbar {
+    display: flex;
+}
+
+.Navbar__status {
+    margin: auto 35px;
+}
+
 .Navbar__menuItems {
     display: flex;
     flex-direction: row;
@@ -5,6 +13,7 @@
     column-gap: 25px;
     list-style-type: none;
     margin: 20px 35px;
+    flex-grow: 2;
 }
 
 .Navbar__navLink.active {

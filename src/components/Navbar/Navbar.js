@@ -7,6 +7,7 @@ function Navbar(props) {
 
     return (
         <nav className="Navbar">
+            <span className="Navbar__status">Logged in: {props.loggedIn !== null || undefined ? props.loggedIn.toString() : "unknown"}</span>
             <ul className="Navbar__menuItems">
                 {props.links.map((link, index) =>
                     <li key={index}>
@@ -20,7 +21,7 @@ function Navbar(props) {
                     </li>
                 )}
                 <li>
-                    <button onClick={props.logoutHandler}>Logout</button>
+                    <button onClick={props.handleLogout}>Logout</button>
                 </li>
             </ul>
         </nav>

@@ -12,6 +12,11 @@ import { useHistory } from 'react-router-dom';
 import LoginApi from './api/Login/loginApi';
 
 
+axios.defaults.baseURL = process.env.REACT_APP_BASE_URL;
+axios.defaults.withCredentials = true;
+
+
+
 function App() {
 
     const history = useHistory();
@@ -23,16 +28,11 @@ function App() {
     //     setLoggedIn({ ...status, loggedIn: loggedInStatus });
     // };
 
-
     const login = async (username, password) => {
         const token = cookies['XSRF-TOKEN'];
         console.log("Token without removal", token);
         // removeCookie('XSRF-TOKEN');
         // console.log("Token after", token);
-
-        username = "Michael";
-        password = "Password123";
-        
 
         LoginApi.login(username, password)
                 .then(response => {
@@ -43,7 +43,7 @@ function App() {
                         console.log("Unable to log in.")
                     }
                 })
-                .catch(error => console.error("Error Message:", error));
+                .catch(error => console.error("Login Error:", error));
         }
 
     const logout = async () => {
@@ -54,12 +54,12 @@ function App() {
                     if (response.status === 200) {
                         setLoggedIn(false);
                         // history.push("/logout");
-                        removeCookie('XSRF-TOKEN');
+                        removeCookie('XSRF-TOKEN'); // needed to avoid issue with logging in again straight after logout
                     } else {
                         console.log("Unable to log out.")
                     }
                 })
-                .catch(error => console.error("Error Message:", error));
+                .catch(error => console.error("Logout Error:", error));
     }
 
     return (
@@ -67,8 +67,8 @@ function App() {
             <header className="App__header">
                 <Navbar
                     links={routes}
-                    loginHandler={login}
-                    logoutHandler={logout}
+                    loggedIn={status}
+                    handleLogout={logout}
                 />
             </header>
             <Switch>
@@ -80,11 +80,11 @@ function App() {
                             : <Redirect to="/login" />} */}
                     <Home
                         loggedIn={status}
-                        statusHandler={setLoggedIn}
+                        handleStatus={setLoggedIn}
                     />
                 </Route>
                 <Route exact path="/login">
-                    <Login loginHandler={login} />
+                    <Login handleLogin={login} />
                 </Route>
                 <Route exact path="/logout">
                     <LogoutSuccess />

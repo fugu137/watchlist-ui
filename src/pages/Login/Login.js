@@ -1,17 +1,64 @@
 import '../../App.css';
+import './Login.css';
 import { useHistory } from 'react-router-dom';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import axios from 'axios';
 
 
 function Login(props) {
 
+    const [details, setDetails] = useState({
+        username: "Michael",
+        password: "Password123",
+    });
+
+    const updateDetails = (input, event) => {
+        const data = { [input]: event.target.value };
+        setDetails((oldDetails) => ({ ...oldDetails, ...data }) );
+    }
+
+    const loginButtonHandler = (event) => {
+        event.preventDefault();
+        props.handleLogin(details.username, details.password);
+    }
+
+
     return (
         <div className="Login">
             <h1>Login Page</h1>
-            <p>
-                <button onClick={props.loginHandler}>Login</button>
-            </p>
+            <form className="Login__form">
+                <label
+                    className="Login__formLabel"
+                    forhtml="username-input"
+                >
+                    Username:
+                </label>
+                <input
+                    id="username-input"
+                    className="Login__formInput"
+                    type="text"
+                    value={details.username}
+                    onChange={(event) => updateDetails("username", event)}
+                >
+                </input>
+                <label
+                    className="Login__formLabel"
+                    forhtml="password-input"
+                >
+                    Password:
+                </label>
+                <input
+                    id="password-input"
+                    className="Login__formInput"
+                    type="password"
+                    value={details.password}
+                    onChange={(event) => updateDetails("password", event)}
+                >
+                </input>
+                <button onClick={loginButtonHandler}>Login</button>
+            </form>
+
+
         </div>
     );
 }

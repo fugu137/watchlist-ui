@@ -7,7 +7,7 @@ function Home(props) {
 
     const [movies, setMovies] = useState(null);
 
-    const setLoggedIn = props.statusHandler;
+    const setLoggedIn = props.handleStatus;
 
     // useEffect(() => {
     //     const getPrincipal = async () => {

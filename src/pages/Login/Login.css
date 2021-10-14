@@ -1,0 +1,21 @@
+
+.Login {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.Login__form {
+    width: 280px;
+}
+
+.Login__formLabel {
+    display: block;
+    width: 100%;
+    text-align: left;
+}
+
+.Login__formInput {
+    width: 100%;
+    margin-bottom: 10px;
+}
