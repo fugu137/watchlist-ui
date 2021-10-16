@@ -9,43 +9,37 @@ function Home(props) {
     const [movies, setMovies] = useState(null);
 
     useEffect(() => {
-
         MovieApi.loadMovies()
-                .then(response => {
-                    setMovies(response.data);
-                })
-                .catch(error => {
-                    console.error("Movies error: ", error.response)
-                    setMovies([]);
-                })
+            .then(response => {
+                setMovies(response.data);
+            })
+            .catch(error => {
+                console.error("Movies error: ", error.response)
+                setMovies([]);
+            })
 
     }, [props.loggedIn]);
 
     return (
         <div className="Home">
             <h1>Home Page</h1>
-            {/* {props.loggedIn === null
-                ? <StatusMessage />
-                : <MovieList movies={movies} />} */}
-                <MovieList movies={movies} />
+            {!props.loggedIn
+                ? <p>Not logged in...</p>
+                : <MovieList movies={movies} />}
         </div>
     );
-}
-
-function StatusMessage() {
-    return <p>"Not logged in..."</p>;
 }
 
 function MovieList({ movies }) {
 
     if (!movies) {
-        return <p>"Not logged in..."</p>;
+        return <p>"Loading..."</p>;
 
     } else {
         return (
             <>
-                {movies.length === 0 
-                    ? <p>No movies found...</p> 
+                {movies.length === 0
+                    ? <p>No movies found...</p>
                     : movies.map((movie, index) => <p key={index}>{movie.name}</p>)}
             </>
         );

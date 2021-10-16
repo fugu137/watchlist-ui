@@ -56,9 +56,10 @@ function Login(props) {
                 >
                 </input>
                 <button onClick={loginButtonHandler}>Login</button>
+                <div className="Login__formError"> {props.error && props.error}</div>
+
+               
             </form>
-
-
         </div>
     );
 }
