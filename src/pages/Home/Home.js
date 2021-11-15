@@ -11,10 +11,11 @@ function Home(props) {
     useEffect(() => {
         MovieApi.loadMovies()
             .then(response => {
+                console.log(response.data)
                 setMovies(response.data);
             })
             .catch(error => {
-                console.error("Movies error: ", error.response)
+                console.error('Movies error: ', error.response)
                 setMovies([]);
             })
 
@@ -40,7 +41,7 @@ function MovieList({ movies }) {
             <>
                 {movies.length === 0
                     ? <p>No movies found...</p>
-                    : movies.map((movie, index) => <p key={index}>{movie.name}</p>)}
+                    : movies.map((movie, index) => <p key={index}>{movie.title}</p>)}
             </>
         );
     }

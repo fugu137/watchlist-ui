@@ -31,24 +31,31 @@ function App() {
         LoginApi.login(username, password)
             .then(response => {
                 if (response.status === 200) {
-                    setLoggedIn(old => ({ ...old, loggedIn: true }));
+                    setLoggedIn({
+                        loggedIn: true, 
+                        error: null
+                    });
                     // history.push("/");
                 } else {
                     setLoggedIn({
                         loggedIn: false,
                         error: 'Incorrect login details!'
                     });
-                    console.log("Unable to log in.")
+                    console.log('Unable to log in.')
                 }
             })
             .catch(error => {
-                if (error.response.status === 401) {
+                if (error.response && error.response.status === 401) {
                     setLoggedIn({
                         loggedIn: false,
                         error: 'Incorrect login details!'
                     });
                 } else {
                     console.error("Login Error:", error)
+                    setLoggedIn({
+                        loggedIn: false,
+                        error: 'There was a problem accessing the server. Please try again later.',
+                    });
                 }
             });
     }
@@ -62,10 +69,10 @@ function App() {
                     // history.push("/logout");
                     removeCookie('XSRF-TOKEN'); // needed to avoid issue with logging in again straight after logout
                 } else {
-                    console.log("Unable to log out.")
+                    console.log('Unable to log out.')
                 }
             })
-            .catch(error => console.error("Logout Error:", error));
+            .catch(error => console.error('Logout Error:', error));
     }
 
     return (
