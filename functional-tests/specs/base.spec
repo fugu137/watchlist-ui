@@ -7,7 +7,7 @@
 
    |Text              |
    |------------------|
-   |Home Page         |
+   |Movie Watchlist   |
    |Logged in: unknown|
 
 * Click link "Login"
@@ -24,4 +24,4 @@
 * Logout
 * See text "Logged in: false"
 * Click link "Home"
-* See text "No movies found..."
+* See text "Not logged in..."

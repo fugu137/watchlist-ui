@@ -1,24 +1,30 @@
 
 .SearchBar {
-    padding: 40px 0;
+    padding: 40px 40px;
     /* border: 1px solid red; */
     position: relative;
-    width: 50%;
+    max-width: 680px;
+    margin-left: 40px;
     display: grid;
     grid-template-columns: 12fr 1fr;
     grid-template-areas: 
         "input button";
+    column-gap: 4px;
+}
+
+.SearchBar--active {
+    padding-bottom: 20px;
 }
 
 .SearchBar__input {
     display: inline-block;
     width: 100%;
-    /* margin-right: 4px; */
     grid-area: input;
 }
 
 .SearchBar__button {
     grid-area: button;
+    width: 60px;
 }
 
 .SearchBar__results {

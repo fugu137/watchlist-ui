@@ -23,7 +23,8 @@ main {
 }
 
 section {
-    width: 960px;
+    width: 90%;
+    max-width: 960px;
     padding: 40px 0;
 }
 

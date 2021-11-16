@@ -5,7 +5,7 @@
 
 .MovieList__listItem {
     list-style-type: none;
-    height: 100px;
+    height: 160px;
     margin: 10px 0;
     background-color: hsla(229, 27%, 10%, 80%);
     display: flex;
