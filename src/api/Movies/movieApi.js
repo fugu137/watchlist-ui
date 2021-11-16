@@ -6,9 +6,9 @@ const MovieApi = {
     getMovies: async () => {
         const url = '/movies';
 
-        return await axios.post(url)
+        return await axios.get(url)
             .then(response => ({
-                movies: response.movies,
+                movies: response.data,
                 error: null,
             }))
             .catch(() => ({

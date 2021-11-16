@@ -9,20 +9,19 @@ describe('MovieApi', () => {
         it('makes call to correct endpoint', async () => {
             const url = '/movies';
 
-            axios.post.mockResolvedValueOnce({});
+            axios.get.mockResolvedValueOnce({});
             await MovieApi.getMovies();
 
-            expect(axios.post).toHaveBeenCalledWith(url);
+            expect(axios.get).toHaveBeenCalledWith(url);
         });
 
         it('returns correct response if api call successful', async () => {
             const payload = {
-                movies: ['Movie1', 'Movie2', 'Movie3'],
+                data: ['Movie1', 'Movie2', 'Movie3'],
             };
+            const expectedResponse = { movies: payload.data, error: null };
 
-            const expectedResponse = { ...payload, error: null };
-
-            axios.post.mockResolvedValue(payload);
+            axios.get.mockResolvedValue(payload);
             const response = await MovieApi.getMovies();
 
             expect(response).toStrictEqual(expectedResponse);
@@ -34,7 +33,7 @@ describe('MovieApi', () => {
                 error: 'Something went wrong. Unable to retrieve movie list.',
             };
 
-            axios.post.mockRejectedValue({ response: { status: 500 } });
+            axios.get.mockRejectedValue(new Error());
             const response = await MovieApi.getMovies();
 
             expect(response).toStrictEqual(expectedResponse);

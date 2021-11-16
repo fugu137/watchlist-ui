@@ -4,29 +4,24 @@ import { useEffect, useState } from 'react';
 import MovieApi from '../../api/Movies/movieApi';
 
 
-function Home(props) {
+function Home({loggedIn}) {
 
     const [movies, setMovies] = useState(null);
 
     useEffect(() => {
-        MovieApi.getMovies()
-            .then(response => {
-                console.log(response.data)
-                setMovies(response.data);
-            })
-            .catch(error => {
-                console.error('Movies error: ', error.response)
-                setMovies([]);
-            })
+        MovieApi.getMovies().then(response => {
+            setMovies(response.movies); 
+        })
 
-    }, [props.loggedIn]);
+    }, [loggedIn]);
 
     return (
         <div className="Home">
             <h1>Home Page</h1>
-            {!props.loggedIn
+            {!loggedIn
                 ? <p>Not logged in...</p>
-                : <MovieList movies={movies} />}
+                : <MovieList movies={movies} />
+            }
         </div>
     );
 }
