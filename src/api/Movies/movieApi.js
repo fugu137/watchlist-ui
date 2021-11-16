@@ -4,13 +4,17 @@ import axios from 'axios';
 const MovieApi = {
 
     getMovies: async () => {
+        const url = '/movies';
 
-        const options = {
-            method: 'GET',
-            url: '/movies',
-        }
-
-        return await axios(options);
+        return await axios.post(url)
+            .then(response => ({
+                movies: response.movies,
+                error: null,
+            }))
+            .catch(() => ({
+                movies: [],
+                error: 'Something went wrong. Unable to retrieve movie list.',
+            }));
     }
 };
 
