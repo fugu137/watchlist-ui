@@ -16,6 +16,10 @@
     flex-grow: 2;
 }
 
+.Navbar__navLink {
+    color: white;
+}
+
 .Navbar__navLink.active {
     color: red;
 }

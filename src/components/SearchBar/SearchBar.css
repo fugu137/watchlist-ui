@@ -1,0 +1,33 @@
+
+.SearchBar {
+    padding: 40px 0;
+    /* border: 1px solid red; */
+    position: relative;
+    width: 50%;
+    display: grid;
+    grid-template-columns: 12fr 1fr;
+    grid-template-areas: 
+        "input button";
+}
+
+.SearchBar__input {
+    display: inline-block;
+    width: 100%;
+    /* margin-right: 4px; */
+    grid-area: input;
+}
+
+.SearchBar__button {
+    grid-area: button;
+}
+
+.SearchBar__results {
+    background-color: hsla(229, 20%, 43%, 95%);
+}
+
+.SearchBar__resultsItem {
+    list-style-type: none;
+    text-align: left;
+}
+
+

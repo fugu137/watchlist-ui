@@ -1,45 +1,33 @@
-import '../../App.css';
-import axios from 'axios';
 import { useEffect, useState } from 'react';
 import MovieApi from '../../api/Movies/movieApi';
+import SearchBar from '../../components/SearchBar/SearchBar';
+import MovieList from '../../components/MovieList/MovieList';
+import '../Home/Home.css';
 
-
-function Home({loggedIn}) {
-
+function Home ({ loggedIn }) {
     const [movies, setMovies] = useState(null);
 
     useEffect(() => {
-        MovieApi.getMovies().then(response => {
-            setMovies(response.movies); 
-        })
-
+        MovieApi.getMovies().then((response) => {
+            setMovies(response.movies);
+        });
     }, [loggedIn]);
 
     return (
-        <div className="Home">
-            <h1>Home Page</h1>
-            {!loggedIn
-                ? <p>Not logged in...</p>
-                : <MovieList movies={movies} />
-            }
-        </div>
+        <main className="Home">
+            <h1>Movie Watchlist</h1>
+            {!loggedIn ? (
+                <section>
+                    <p>Not logged in...{loggedIn}</p>
+                </section>
+            ) : (
+                <>
+                    <SearchBar />
+                    <MovieList movies={movies} />
+                </>
+            )}
+        </main>
     );
-}
-
-function MovieList({ movies }) {
-
-    if (!movies) {
-        return <p>"Loading..."</p>;
-
-    } else {
-        return (
-            <>
-                {movies.length === 0
-                    ? <p>No movies found...</p>
-                    : movies.map((movie, index) => <p key={index}>{movie.title}</p>)}
-            </>
-        );
-    }
 }
 
 export default Home;

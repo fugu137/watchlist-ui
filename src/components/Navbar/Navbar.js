@@ -3,13 +3,13 @@ import '../../App.css';
 import './Navbar.css';
 
 
-function Navbar(props) {
+function Navbar({ logoutHandler, loggedIn, links }) {
 
     return (
         <nav className="Navbar">
-            <span className="Navbar__status">Logged in: {props.loggedIn !== null || undefined ? props.loggedIn.toString() : "unknown"}</span>
+            <span className="Navbar__status">Logged in: {loggedIn !== null || undefined ? loggedIn.toString() : "unknown"}</span>
             <ul className="Navbar__menuItems">
-                {props.links.map((link, index) =>
+                {links.map((link, index) =>
                     <li key={index}>
                         <NavLink
                             className="Navbar__navLink"
@@ -21,7 +21,7 @@ function Navbar(props) {
                     </li>
                 )}
                 <li>
-                    <button onClick={props.handleLogout}>Logout</button>
+                    <button onClick={logoutHandler}>Logout</button>
                 </li>
             </ul>
         </nav>
