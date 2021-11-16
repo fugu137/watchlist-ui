@@ -9,7 +9,7 @@ function Home(props) {
     const [movies, setMovies] = useState(null);
 
     useEffect(() => {
-        MovieApi.loadMovies()
+        MovieApi.getMovies()
             .then(response => {
                 console.log(response.data)
                 setMovies(response.data);

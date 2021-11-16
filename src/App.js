@@ -26,53 +26,15 @@ function App() {
     });
 
 
-    const login = (username, password) => {
-
-        LoginApi.login(username, password)
-            .then(response => {
-                if (response.status === 200) {
-                    setLoggedIn({
-                        loggedIn: true, 
-                        error: null
-                    });
-                    // history.push("/");
-                } else {
-                    setLoggedIn({
-                        loggedIn: false,
-                        error: 'Incorrect login details!'
-                    });
-                    console.log('Unable to log in.')
-                }
-            })
-            .catch(error => {
-                if (error.response && error.response.status === 401) {
-                    setLoggedIn({
-                        loggedIn: false,
-                        error: 'Incorrect login details!'
-                    });
-                } else {
-                    console.error("Login Error:", error)
-                    setLoggedIn({
-                        loggedIn: false,
-                        error: 'There was a problem accessing the server. Please try again later.',
-                    });
-                }
-            });
+    const login = async (username, password) => {
+        const response = await LoginApi.login(username, password);
+        setLoggedIn(old => ({ ...old, ...response }));
     }
 
-    const logout = () => {
-
-        LoginApi.logout()
-            .then(response => {
-                if (response.status === 200) {
-                    setLoggedIn(old => ({ ...old, loggedIn: false }));
-                    // history.push("/logout");
-                    removeCookie('XSRF-TOKEN'); // needed to avoid issue with logging in again straight after logout
-                } else {
-                    console.log('Unable to log out.')
-                }
-            })
-            .catch(error => console.error('Logout Error:', error));
+    const logout = async () => {
+        const response = await LoginApi.logout();
+        setLoggedIn(old => ({ ...old, ...response }));
+        removeCookie('XSRF-TOKEN'); // needed to avoid issue with logging in again straight after logout
     }
 
     return (

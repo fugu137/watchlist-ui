@@ -9,23 +9,33 @@ const LoginApi = {
         formData.append("username", username);
         formData.append("password", password);
 
-        const options = {
-            method: 'POST',
-            url: '/login',
-            data: formData,
-        }
+        const url = '/login';
 
-        return await axios(options);
+        return await axios.post(url, formData)
+            .then(() => ({
+                loggedIn: true,
+                error: null,
+            }))
+            .catch(error => {
+                if (error.response && error.response.status === 401) {
+                    return { error: 'Invalid login details. Please check your username and password and try again.' };
+
+                } else {
+                    return { error: 'The server is unavailable. Please try again later.' };
+                }
+            });
     },
 
     logout: async () => {
 
-        const options = {
-            method: 'POST',
-            url: '/logout',
-        }
+        const url = '/logout';
 
-        return await axios(options);
+        return await axios.post(url)
+            .then(() => ({
+                loggedIn: false,
+                error: null,
+            }))
+            .catch(() => ({ error: 'Server unavailable. Unable to log out. Please try again later.' }));
     }
 }
 

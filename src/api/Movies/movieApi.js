@@ -3,7 +3,7 @@ import axios from 'axios';
 
 const MovieApi = {
 
-    loadMovies: async () => {
+    getMovies: async () => {
 
         const options = {
             method: 'GET',

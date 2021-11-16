@@ -5,12 +5,19 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 
 
-function Login(props) {
+function Login({handleLogin, error}) {
+
+    const [active, setActive] = useState(false);
 
     const [details, setDetails] = useState({
         username: "Michael",
         password: "Password123",
     });
+
+    useEffect(() => {
+        setActive(false);
+    }, [])
+    
 
     const updateDetails = (input, event) => {
         const data = { [input]: event.target.value };
@@ -19,7 +26,8 @@ function Login(props) {
 
     const loginButtonHandler = (event) => {
         event.preventDefault();
-        props.handleLogin(details.username, details.password);
+        setActive(true);
+        handleLogin(details.username, details.password);
     }
 
 
@@ -56,7 +64,7 @@ function Login(props) {
                 >
                 </input>
                 <button onClick={loginButtonHandler}>Login</button>
-                <div className="Login__formError"> {props.error && props.error}</div>
+                <div className="Login__formError"> {(error && active) && error}</div>
 
                
             </form>
