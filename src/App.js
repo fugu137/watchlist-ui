@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useCookies } from 'react-cookie';
 import { Route, Switch } from 'react-router-dom';
 import LoginApi from './api/Login/loginApi';
@@ -11,15 +11,22 @@ import './App.css';
 
 axios.defaults.baseURL = process.env.REACT_APP_BASE_URL;
 axios.defaults.withCredentials = true;
-const STORAGE_KEY = process.env.REACT_APP_STORAGE_KEY;
+
 
 function App () {
     const [cookies, removeCookie] = useCookies(['XSRF-TOKEN']);
 
     const [status, setLoggedIn] = useState({
-        loggedIn: localStorage.getItem(STORAGE_KEY),
+        loggedIn: null,
         error: null,
     });
+
+    useEffect(() => {
+        LoginApi.getPrincipal().then((username) => {
+            setLoggedIn((old) => ({ ...old, loggedIn: username}));
+        });
+    }, []);
+
 
     const login = async (username, password) => {
         const response = await LoginApi.login(username, password);

@@ -2,7 +2,6 @@ import axios from 'axios';
 
 const STORAGE_KEY = process.env.REACT_APP_STORAGE_KEY;
 
-
 const LoginApi = {
     login: async (username, password) => {
         const formData = new FormData();
@@ -47,6 +46,20 @@ const LoginApi = {
             .catch(() => ({
                 error: 'Server unavailable. Unable to log out. Please try again later.',
             }));
+    },
+    getPrincipal: async () => {
+        const url = '/accounts/principal';
+
+        return await axios
+            .get(url)
+            .then((response) => {
+                if (response.status === 200) {
+                    return response.data;
+                }
+            })
+            .catch(() => {
+                return null;
+            });
     },
 };
 

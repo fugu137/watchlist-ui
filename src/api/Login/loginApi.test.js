@@ -128,4 +128,21 @@ describe('LoginApi', () => {
             expect(STORAGE_KEY).toBe('Watchlist');
         });
     });
+
+    describe('principal', () => {
+        it('returns correct details if user logged in', async () => {
+            axios.get.mockResolvedValueOnce({ status: 200, data: 'Michael' });
+            const response = await LoginApi.getPrincipal();
+
+            expect(axios.get).toHaveBeenCalledWith('/accounts/principal');
+            expect(response).toContain('Michael');
+        });
+
+        it('returns null if no user logged in', async () => {
+            axios.get.mockRejectedValueOnce(new Error());
+            const response = await LoginApi.getPrincipal();
+
+            expect(response).toBe(null);
+        });
+    });
 });

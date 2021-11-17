@@ -8,9 +8,11 @@ function Home ({ loggedIn }) {
     const [movies, setMovies] = useState(null);
 
     useEffect(() => {
-        MovieApi.getMovies().then((response) => {
-            setMovies(response.movies);
-        });
+        if (loggedIn) {
+            MovieApi.getMovies().then((response) => {
+                setMovies(response.movies);
+            });
+        }
     }, [loggedIn]);
 
     return (
