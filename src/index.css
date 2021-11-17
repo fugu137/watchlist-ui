@@ -1,8 +1,14 @@
+:root {
+    --input-height: 28px;
+}
+
 * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
+    font-size: 16px;
 }
+
 
 body {
     /* font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -22,10 +28,27 @@ main {
     align-items: center;
 }
 
+main h1 {
+    font-size: 2rem;
+}
+
 section {
     width: 90%;
     max-width: 960px;
     padding: 40px 0;
+}
+
+button {
+    border-radius: 0;
+    border: none;
+    outline: none;
+    cursor: pointer;
+}
+
+input {
+    border-radius: 0;
+    border: none;
+    outline: none;
 }
 
 code {

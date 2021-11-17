@@ -1,39 +1,44 @@
-
 .SearchBar {
-    padding: 40px 40px;
-    /* border: 1px solid red; */
-    position: relative;
-    max-width: 680px;
-    margin-left: 40px;
-    display: grid;
-    grid-template-columns: 12fr 1fr;
-    grid-template-areas: 
-        "input button";
-    column-gap: 4px;
+    padding: 50px 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    column-gap: 7px;
 }
 
-.SearchBar--active {
-    padding-bottom: 20px;
+.SearchBar__wrapper {
+    position: relative;
+    display: inline-block;
+    height: var(--input-height);
+    max-width: 600px;
+    flex-grow: 2;
 }
 
 .SearchBar__input {
     display: inline-block;
+    height: var(--input-height);
     width: 100%;
-    grid-area: input;
+    padding: 0 4px;
 }
 
 .SearchBar__button {
-    grid-area: button;
-    width: 60px;
+    width: 75px;
+    height: var(--input-height);
 }
 
 .SearchBar__results {
-    background-color: hsla(229, 20%, 43%, 95%);
+    position: absolute;
+    top: var(--input-height);
+    left: 0;
+    right: 0;
+    border: none;
+    background-color: hsla(229, 20%, 43%, 90%);
 }
 
 .SearchBar__resultsItem {
     list-style-type: none;
     text-align: left;
+    height: var(--input-height);
+    padding: 0 4px;
+    line-height: var(--input-height);
 }
-
-

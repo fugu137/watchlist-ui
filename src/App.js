@@ -11,13 +11,13 @@ import './App.css';
 
 axios.defaults.baseURL = process.env.REACT_APP_BASE_URL;
 axios.defaults.withCredentials = true;
-
+const STORAGE_KEY = process.env.REACT_APP_STORAGE_KEY;
 
 function App () {
     const [cookies, removeCookie] = useCookies(['XSRF-TOKEN']);
 
     const [status, setLoggedIn] = useState({
-        loggedIn: null,
+        loggedIn: localStorage.getItem(STORAGE_KEY),
         error: null,
     });
 
