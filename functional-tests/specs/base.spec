@@ -8,10 +8,10 @@
    |Text              |
    |------------------|
    |Movie Watchlist   |
-   |Logged in: unknown|
+   |Logged in: false  |
 
 * Click link "Login"
-* Login
+* Login "Michael"
 * Click link "Home"
 * See
 
