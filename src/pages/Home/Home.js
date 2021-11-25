@@ -4,7 +4,7 @@ import SearchBar from '../../components/SearchBar/SearchBar';
 import MovieList from '../../components/MovieList/MovieList';
 import '../Home/Home.css';
 
-function Home ({ loggedIn }) {
+function Home ({ loggedIn, clickEvent }) {
     const [movies, setMovies] = useState(null);
 
     useEffect(() => {
@@ -24,7 +24,7 @@ function Home ({ loggedIn }) {
                 </section>
             ) : (
                 <>
-                    <SearchBar />
+                    <SearchBar clickEvent={clickEvent} />
                     <MovieList movies={movies} />
                 </>
             )}

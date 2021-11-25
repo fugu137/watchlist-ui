@@ -1,30 +1,29 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import '../../index.css';
 import '../SearchBar/SearchBar.css';
 
-function SearchBar () {
+function SearchBar ({ clickEvent }) {
     const [query, setQuery] = useState('');
     const [results, setResults] = useState([]);
 
     const handleSearchButtonClick = (event) => {
         event.preventDefault();
         setResults((old) => [...old, query]);
-
-        document.addEventListener('click', windowClickListener);
     };
+
+    useEffect(() => {
+        if (results.length > 0) {
+            const classes = clickEvent.target.classList;
+
+            if (!classes.contains('SearchBar__button') && !classes.contains('SearchBar__resultsItem')) {
+                closeSearchResults();
+            }
+        }
+    }, [clickEvent]);
 
     const closeSearchResults = () => {
         setResults([]);
         setQuery('');
-        document.removeEventListener('click', windowClickListener);
-    };
-
-    const windowClickListener = (event) => {
-        const classes = event.target.classList;
-
-        if (!classes.contains('SearchBar__button') && !classes.contains('SearchBar__resultsItem')) {
-            closeSearchResults();
-        }
     };
 
     return (
