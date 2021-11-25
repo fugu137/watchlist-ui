@@ -16,26 +16,26 @@ axios.defaults.withCredentials = true;
 function App () {
     const [cookies, removeCookie] = useCookies(['XSRF-TOKEN']);
 
-    const [status, setLoggedIn] = useState({
-        loggedIn: null,
+    const [status, setStatus] = useState({
+        loggedInUser: null,
         error: null,
     });
 
     useEffect(() => {
         LoginApi.getPrincipal().then((username) => {
-            setLoggedIn((old) => ({ ...old, loggedIn: username}));
+            setStatus((old) => ({ ...old, loggedInUser: username}));
         });
     }, []);
 
 
     const login = async (username, password) => {
         const response = await LoginApi.login(username, password);
-        setLoggedIn(old => ({ ...old, ...response }));
+        setStatus(old => ({ ...old, ...response }));
     };
 
     const logout = async () => {
         const response = await LoginApi.logout();
-        setLoggedIn(old => ({ ...old, ...response }));
+        setStatus(old => ({ ...old, ...response }));
         removeCookie('XSRF-TOKEN'); // needed to avoid issue with logging in again straight after logout
     };
 
@@ -44,7 +44,7 @@ function App () {
             <header className="App__header">
                 <Navbar
                     links={routes}
-                    loggedIn={status.loggedIn}
+                    loggedIn={status.loggedInUser}
                     logoutHandler={logout}
                 />
             </header>
@@ -56,7 +56,7 @@ function App () {
                                 statusHandler={setLoggedInStatus}/>
                             : <Redirect to="/login" />} */}
                     <Home
-                        loggedIn={status.loggedIn}
+                        loggedIn={status.loggedInUser}
                     />
                 </Route>
                 <Route exact path="/login">

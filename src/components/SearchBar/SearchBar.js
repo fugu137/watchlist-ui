@@ -10,7 +10,7 @@ function SearchBar () {
         event.preventDefault();
         setResults((old) => [...old, query]);
 
-        document.onclick = windowClickListener;
+        document.addEventListener('click', windowClickListener);
     };
 
     const closeSearchResults = () => {
