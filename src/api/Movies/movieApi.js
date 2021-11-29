@@ -1,20 +1,34 @@
-import axios from 'axios'
+import axios from 'axios';
 
 const MovieApi = {
     getMovies: async () => {
-        const url = '/movies'
+        const url = '/movies';
 
         return await axios
             .get(url)
-            .then(response => ({
+            .then((response) => ({
                 movies: response.data,
                 error: null,
             }))
             .catch(() => ({
                 movies: [],
                 error: 'Something went wrong. Unable to retrieve movie list.',
-            }))
+            }));
     },
-}
+    search: async (query) => {
+        const url = '/omdb';
 
-export default MovieApi
+        return await axios
+            .get(url, { params: { movieTitle: query } })
+            .then((response) => ({
+                movies: response.data,
+                error: null,
+            }))
+            .catch((error) => ({
+                movies: null,
+                error: 'Something went wrong. Unable to get search results. ' + error.message,
+            }));
+    },
+};
+
+export default MovieApi;

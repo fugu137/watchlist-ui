@@ -23,7 +23,7 @@ describe('Home', () => {
     });
 
     describe('Logged in', () => {
-        it('displays SearchBar component', async () => {
+        it('displays search bar', async () => {
             MovieApi.getMovies.mockResolvedValueOnce({
                 movies: [],
                 error: null,
@@ -35,7 +35,7 @@ describe('Home', () => {
             expect(await screen.findByRole('button', { name: 'Search' })).toBeInTheDocument();
         });
 
-        it('displays MovieList component', async () => {
+        it('displays list of movies', async () => {
             MovieApi.getMovies.mockResolvedValueOnce({
                 movies: [],
                 error: null,

@@ -12,7 +12,7 @@ step('See <table>', async function (table) {
     }
 });
 
-step('Click link <linkText>', async function (linkText) {
+step('Go to <linkText>', async function (linkText) {
     await click(link(linkText));
 });
 

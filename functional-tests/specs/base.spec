@@ -10,9 +10,9 @@
    |Movie Watchlist   |
    |Logged in: false  |
 
-* Click link "Login"
+* Go to "Login"
 * Login "Michael"
-* Click link "Home"
+* Go to "Home"
 * See
 
    |Movies          |
@@ -23,5 +23,5 @@
 
 * Logout
 * See text "Logged in: false"
-* Click link "Home"
+* Go to "Home"
 * See text "Not logged in..."
