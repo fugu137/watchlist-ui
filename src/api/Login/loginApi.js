@@ -15,7 +15,7 @@ const LoginApi = {
             .then(() => {
                 localStorage.setItem(STORAGE_KEY, username);
                 return {
-                    loggedIn: username,
+                    loggedInUser: username,
                     error: null,
                 };
             })
@@ -39,7 +39,7 @@ const LoginApi = {
             .then(() => {
                 localStorage.removeItem(STORAGE_KEY);
                 return {
-                    loggedIn: null,
+                    loggedInUser: null,
                     error: null,
                 };
             })

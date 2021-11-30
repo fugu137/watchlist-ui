@@ -24,7 +24,7 @@ describe('LoginApi', () => {
 
         it('returns correct response if login credentials are correct', async () => {
             const expectedResponse = {
-                loggedIn: username,
+                loggedInUser: username,
                 error: null,
             };
 
@@ -85,7 +85,7 @@ describe('LoginApi', () => {
 
         it('returns correct response if logout successful', async () => {
             const expectedResponse = {
-                loggedIn: null,
+                loggedInUser: null,
                 error: null,
             };
 

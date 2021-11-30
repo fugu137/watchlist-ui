@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import MovieApi from '../../api/Movies/movieApi';
 import '../../index.css';
 import '../SearchBar/SearchBar.css';
 
@@ -6,13 +7,18 @@ function SearchBar ({ clickEvent }) {
     const [query, setQuery] = useState('');
     const [results, setResults] = useState([]);
 
-    const handleSearchButtonClick = (event) => {
+    const handleSearchButtonClick = async (event) => {
         event.preventDefault();
-        setResults((old) => [...old, query]);
+
+        const response = await MovieApi.search(query);
+
+        if (response.movies) {
+            setResults(response.movies);
+        }
     };
 
     useEffect(() => {
-        if (results.length > 0) {
+        if (clickEvent) {
             const classes = clickEvent.target.classList;
 
             if (!classes.contains('SearchBar__button') && !classes.contains('SearchBar__resultsItem')) {
@@ -22,8 +28,10 @@ function SearchBar ({ clickEvent }) {
     }, [clickEvent]);
 
     const closeSearchResults = () => {
-        setResults([]);
-        setQuery('');
+        if (results.length > 0) {
+            setResults([]);
+            setQuery('');
+        }
     };
 
     return (
@@ -40,7 +48,7 @@ function SearchBar ({ clickEvent }) {
                     <ul className="SearchBar__results">
                         {results.map((result, index) => (
                             <li className="SearchBar__resultsItem" key={index}>
-                                {result}
+                                {result.title}
                             </li>
                         ))}
                     </ul>

@@ -1,12 +1,12 @@
 import '../MovieList/MovieList.css';
 
-function MovieList ({ moviesStatus }) {
-    if (!moviesStatus) {
+function MovieList ({ movieState }) {
+    if (!movieState) {
         return <p>"Loading..."</p>;
     }
 
-    const movies = moviesStatus.movies;
-    const error = moviesStatus.error;
+    const movies = movieState.movies;
+    const error = movieState.error;
 
     if (!movies) {
         return <p>{error}</p>

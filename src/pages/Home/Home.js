@@ -5,13 +5,13 @@ import MovieList from '../../components/MovieList/MovieList';
 import '../Home/Home.css';
 
 function Home ({ loggedIn, clickEvent }) {
-    const [moviesStatus, setMoviesStatus] = useState();
+    const [ movieState, setMovieState] = useState();
 
     useEffect(() => {
         if (loggedIn) {
             MovieApi.getMovies().then((response) => {
-                setMoviesStatus(response);
-            })
+                setMovieState(response);
+            });
         }
     }, [loggedIn]);
 
@@ -25,7 +25,7 @@ function Home ({ loggedIn, clickEvent }) {
             ) : (
                 <>
                     <SearchBar clickEvent={clickEvent} />
-                    <MovieList moviesStatus={moviesStatus} />
+                    <MovieList movieState={ movieState} />
                 </>
             )}
         </main>

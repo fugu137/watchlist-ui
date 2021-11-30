@@ -16,38 +16,36 @@ function App () {
     const [cookies, removeCookie] = useCookies(['XSRF-TOKEN']);
 
     const [clickEvent, setClickEvent] = useState(null);
-    const [status, setStatus] = useState({
+    const [loginState, setLoginState] = useState({
         loggedInUser: null,
         error: null,
     });
 
     useEffect(() => {
         LoginApi.getPrincipal().then((username) => {
-            setStatus((old) => ({ ...old, loggedInUser: username }));
+            setLoginState((old) => ({ ...old, loggedInUser: username }));
         });
     }, []);
 
     const login = async (username, password) => {
         const response = await LoginApi.login(username, password);
-        setStatus((old) => ({ ...old, ...response }));
+        setLoginState((old) => ({ ...old, ...response }));
     };
 
     const logout = async () => {
         const response = await LoginApi.logout();
-        setStatus((old) => ({ ...old, ...response }));
+        setLoginState((old) => ({ ...old, ...response }));
         removeCookie('XSRF-TOKEN'); // needed to avoid issue with logging in again straight after logout
     };
 
     const handleWindowClick = (event) => {
-        // console.log(event)
         setClickEvent(event);
-        // console.log(clickEvent)
     }
 
     return (
         <div className="App" onClick={handleWindowClick}>
             <header className="App__header">
-                <Navbar links={routes} loggedIn={status.loggedInUser} logoutHandler={logout} />
+                <Navbar links={routes} loggedIn={loginState.loggedInUser} logoutHandler={logout} />
             </header>
             <Switch>
                 <Route exact path="/">
@@ -56,10 +54,10 @@ function App () {
                                 loggedIn={status.loggedIn} 
                                 statusHandler={setLoggedInStatus}/>
                             : <Redirect to="/login" />} */}
-                    <Home loggedIn={status.loggedInUser} clickEvent={clickEvent} />
+                    <Home loggedIn={loginState.loggedInUser} clickEvent={clickEvent} />
                 </Route>
                 <Route exact path="/login">
-                    <Login loginHandler={login} error={status.error} />
+                    <Login loginHandler={login} error={loginState.error} />
                 </Route>
             </Switch>
         </div>

@@ -24,7 +24,7 @@ const MovieApi = {
                 movies: response.data,
                 error: null,
             }))
-            .catch((error) => ({
+            .catch(() => ({
                 movies: null,
                 error: 'Something went wrong. Unable to get search results.',
             }));

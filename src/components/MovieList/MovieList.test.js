@@ -3,13 +3,13 @@ import MovieList from './MovieList';
 
 describe('MovieList', () => {
     const movies = [{ title: 'Movie1' }, { title: 'Movie2' }, { title: 'Movie3' }];
-    const moviesStatus = {
+    const movieState = {
         movies: movies,
         error: null,
     };
 
     it('displays movies correctly', async () => {
-        render(<MovieList moviesStatus={moviesStatus} />);
+        render(<MovieList movieState={movieState} />);
 
         expect(screen.getByText('Movie1')).toBeInTheDocument();
         expect(screen.getByText('Movie2')).toBeInTheDocument();
@@ -17,7 +17,7 @@ describe('MovieList', () => {
     });
 
     it('displays loading message if moviesStatus not defined', async () => {
-        render(<MovieList moviesStatus={undefined} />);
+        render(<MovieList movieState={undefined} />);
 
         waitFor(() => {
             expect(screen.getByText('Loading...')).toBeInTheDocument();
@@ -25,12 +25,12 @@ describe('MovieList', () => {
     });
 
     it('displays error message if movies is null', async () => {
-        const moviesStatus = {
+        const movieState = {
             movies: null,
             error: 'Error message',
         }
 
-        render(<MovieList moviesStatus={moviesStatus} />);
+        render(<MovieList movieState={movieState} />);
 
         expect(screen.getByText('Error message')).toBeInTheDocument();
     });
