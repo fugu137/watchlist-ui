@@ -11,7 +11,7 @@ const MovieApi = {
                 error: null,
             }))
             .catch(() => ({
-                movies: [],
+                movies: null,
                 error: 'Something went wrong. Unable to retrieve movie list.',
             }));
     },
@@ -26,7 +26,7 @@ const MovieApi = {
             }))
             .catch((error) => ({
                 movies: null,
-                error: 'Something went wrong. Unable to get search results. ' + error.message,
+                error: 'Something went wrong. Unable to get search results.',
             }));
     },
 };

@@ -29,7 +29,7 @@ describe('MovieApi', () => {
 
         it('returns correct response if api call not successful', async () => {
             const expectedResponse = {
-                movies: [],
+                movies: null,
                 error: 'Something went wrong. Unable to retrieve movie list.',
             };
 
@@ -67,14 +67,13 @@ describe('MovieApi', () => {
 
         it('returns correct response if api call not successful', async () => {
             const query = 'searchTerm'
-            const error = new Error({ message: 'Message' })
 
             const expectedResponse = {
                 movies: null,
-                error: 'Something went wrong. Unable to get search results. ' + error.message,
+                error: 'Something went wrong. Unable to get search results.',
             };
 
-            axios.get.mockRejectedValue(error);
+            axios.get.mockRejectedValue(new Error());
             const response = await MovieApi.search(query);
 
             expect(response).toStrictEqual(expectedResponse);

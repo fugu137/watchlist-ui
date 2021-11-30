@@ -4,7 +4,6 @@ import Home from '../Home/Home';
 
 jest.mock('../../api/Movies/movieApi');
 
-
 describe('Home', () => {
     it('displays homepage heading', async () => {
         render(<Home />);
@@ -35,7 +34,7 @@ describe('Home', () => {
             expect(await screen.findByRole('button', { name: 'Search' })).toBeInTheDocument();
         });
 
-        it('displays list of movies', async () => {
+        it('displays section for list of movies', async () => {
             MovieApi.getMovies.mockResolvedValueOnce({
                 movies: [],
                 error: null,
@@ -57,6 +56,19 @@ describe('Home', () => {
             expect(await screen.findByText('Movie1')).toBeInTheDocument();
             expect(await screen.findByText('Movie2')).toBeInTheDocument();
             expect(await screen.findByText('Movie3')).toBeInTheDocument();
+        });
+
+        it('displays error message if movie list cannot be retrieved', async () => {
+            const response = {
+                movies: null,
+                error: 'Something went wrong. Unable to retrieve movie list',
+            };
+
+            MovieApi.getMovies.mockResolvedValueOnce(response);
+
+            render(<Home loggedIn={'username'} />);
+
+            expect(await screen.findByText(response.error)).toBeInTheDocument();
         });
     });
 });
