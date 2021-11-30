@@ -5,29 +5,38 @@ import movieApi from '../../api/Movies/movieApi';
 jest.mock('../../api/Movies/movieApi');
 
 describe('SearchBar', () => {
-    it('displays search results', async () => {
+    beforeEach(() => {
         const response = {
-            movies: [ 
-                { title: 'Result1' },
-                { title:  'Result2' },
-                { title: 'Result3' },
-            ],
+            movies: [{ title: 'Result1' }, { title: 'Result2' }, { title: 'Result3' }],
             error: null,
         };
 
         movieApi.search.mockResolvedValueOnce(response);
+        render(<SearchBar />);
+    });
 
-        render(<SearchBar/>);
-
+    it('displays search results on search button click', async () => {
         const input = screen.getByPlaceholderText('Search for a movie to add to your watchlist...');
         const button = screen.getByRole('button', { name: 'Search' });
 
-        fireEvent.focus(input);
         fireEvent.change(input, { target: { value: 'Search text' } });
         fireEvent.click(button);
 
         expect(movieApi.search).toHaveBeenCalled();
-        
+
+        expect(await screen.findByText('Result1')).toBeInTheDocument();
+        expect(await screen.findByText('Result2')).toBeInTheDocument();
+        expect(await screen.findByText('Result3')).toBeInTheDocument();
+    });
+
+    it('displays search results on ENTER', async () => {
+        const input = screen.getByPlaceholderText('Search for a movie to add to your watchlist...');
+
+        fireEvent.change(input, { target: { value: 'Search text' } });
+        fireEvent.keyUp(input, { key: 'Enter', code: 'Enter', charCode: 13 });
+
+        expect(movieApi.search).toHaveBeenCalled();
+
         expect(await screen.findByText('Result1')).toBeInTheDocument();
         expect(await screen.findByText('Result2')).toBeInTheDocument();
         expect(await screen.findByText('Result3')).toBeInTheDocument();

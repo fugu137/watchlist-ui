@@ -7,16 +7,6 @@ function SearchBar ({ clickEvent }) {
     const [query, setQuery] = useState('');
     const [results, setResults] = useState([]);
 
-    const handleSearchButtonClick = async (event) => {
-        event.preventDefault();
-
-        const response = await MovieApi.search(query);
-
-        if (response.movies) {
-            setResults(response.movies);
-        }
-    };
-
     useEffect(() => {
         if (clickEvent) {
             const classes = clickEvent.target.classList;
@@ -26,6 +16,29 @@ function SearchBar ({ clickEvent }) {
             }
         }
     }, [clickEvent]);
+
+    const handleSearchButtonClick = (event) => {
+        event.preventDefault();
+        search();
+    };
+
+    const handleSearchQueryChange = (event) => {
+        setQuery(event.target.value);
+    };
+
+    const handleSearchInputKeyPress = (event) => {
+        if (event.key === 'Enter') {
+            search();
+        }
+    };
+
+    const search = async () => {
+        const response = await MovieApi.search(query);
+
+        if (response.movies) {
+            setResults(response.movies);
+        }
+    };
 
     const closeSearchResults = () => {
         if (results.length > 0) {
@@ -42,7 +55,8 @@ function SearchBar ({ clickEvent }) {
                     type="text"
                     placeholder="Search for a movie to add to your watchlist..."
                     value={query}
-                    onChange={(event) => setQuery(event.target.value)}
+                    onChange={handleSearchQueryChange}
+                    onKeyUp={handleSearchInputKeyPress}
                 />
                 {results.length > 0 && (
                     <ul className="SearchBar__results">
