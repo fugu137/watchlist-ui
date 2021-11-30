@@ -41,4 +41,9 @@
     height: var(--input-height);
     padding: 0 4px;
     line-height: var(--input-height);
+    cursor: pointer;
+}
+
+.SearchBar__resultsItem:hover {
+    background-color: hsla(39, 70%, 40%, 100%);
 }
