@@ -32,6 +32,13 @@ function SearchBar ({ clickEvent }) {
         }
     };
 
+    const handleSearchItemClick = (event) => {
+        const imdbID = event.target.id;
+        MovieApi.addMovie(imdbID);
+
+        closeSearchResults();
+    };
+
     const search = async () => {
         const response = await MovieApi.search(query);
 
@@ -61,8 +68,13 @@ function SearchBar ({ clickEvent }) {
                 {results.length > 0 && (
                     <ul className="SearchBar__results">
                         {results.map((result, index) => (
-                            <li className="SearchBar__resultsItem" key={index}>
-                                {result.title}
+                            <li
+                                className="SearchBar__resultsItem"
+                                key={index}
+                                id={result.imdbID}
+                                onClick={handleSearchItemClick}
+                            >
+                                {result.title + ' (' + result.year + ')'}
                             </li>
                         ))}
                     </ul>

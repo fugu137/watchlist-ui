@@ -15,6 +15,19 @@ const MovieApi = {
                 error: 'Something went wrong. Unable to retrieve movie list.',
             }));
     },
+    addMovie: async (id) => {
+        const url = '/movies';
+
+        return await axios
+            .post(url, { imdbID: id })
+            .then(() => ({ error: null }))
+            .catch((error) => {
+                if (error.response.status === 409) {
+                    return { error: 'Movie already added to watchlist.'};
+                }
+                return { error: 'Something went wrong. Movie cannot be added to watchlist.' };
+            });
+    },
     search: async (query) => {
         const url = '/omdb';
 
