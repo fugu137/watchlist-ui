@@ -1,11 +1,48 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 import MovieApi from '../../api/Movies/movieApi';
 import '../../index.css';
 import '../SearchBar/SearchBar.css';
 
-function SearchBar ({ clickEvent }) {
+function SearchBar ({ clickEvent, onMovieSave }) {
     const [query, setQuery] = useState('');
     const [results, setResults] = useState([]);
+
+    const search = async () => {
+        const response = await MovieApi.search(query.trim());
+
+        if (response.movies) {
+            setResults(response.movies);
+        }
+    };
+
+    const closeSearchResults = useCallback(() => {
+        setResults([]);
+        setQuery('');
+    }, []);
+
+    const handleSearchQueryChange = (event) => {
+        setQuery(event.target.value);
+    };
+
+    const handleSearchButtonClick = (event) => {
+        event.preventDefault();
+        search();
+    };
+
+    const handleSearchInputKeyPress = (event) => {
+        if (event.key === 'Enter') {
+            search();
+        }
+    };
+
+    const handleSearchItemClick = async (event) => {
+        closeSearchResults();
+        
+        const imdbID = event.target.id;
+        await MovieApi.addMovie(imdbID);
+
+        onMovieSave();
+    };
 
     useEffect(() => {
         if (clickEvent) {
@@ -15,44 +52,7 @@ function SearchBar ({ clickEvent }) {
                 closeSearchResults();
             }
         }
-    }, [clickEvent]);
-
-    const handleSearchButtonClick = (event) => {
-        event.preventDefault();
-        search();
-    };
-
-    const handleSearchQueryChange = (event) => {
-        setQuery(event.target.value);
-    };
-
-    const handleSearchInputKeyPress = (event) => {
-        if (event.key === 'Enter') {
-            search();
-        }
-    };
-
-    const handleSearchItemClick = (event) => {
-        const imdbID = event.target.id;
-        MovieApi.addMovie(imdbID);
-
-        closeSearchResults();
-    };
-
-    const search = async () => {
-        const response = await MovieApi.search(query);
-
-        if (response.movies) {
-            setResults(response.movies);
-        }
-    };
-
-    const closeSearchResults = () => {
-        if (results.length > 0) {
-            setResults([]);
-            setQuery('');
-        }
-    };
+    }, [clickEvent, closeSearchResults]);
 
     return (
         <section className="SearchBar">

@@ -10,7 +10,7 @@
     position: relative;
     display: inline-block;
     height: var(--input-height);
-    max-width: 600px;
+    max-width: 580px;
     flex-grow: 2;
 }
 
