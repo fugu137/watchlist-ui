@@ -1,8 +1,10 @@
 import { NavLink } from 'react-router-dom';
 import '../../App.css';
 import './Navbar.css';
+import links from '../../router/routes';
 
-function Navbar ({ logoutHandler, loggedIn, links }) {
+
+function Navbar ({ logoutHandler, loggedIn }) {
     return (
         <nav className="Navbar">
             <span className="Navbar__status">
@@ -12,7 +14,7 @@ function Navbar ({ logoutHandler, loggedIn, links }) {
                 {links.map((link, index) => (
                     <li key={index}>
                         <NavLink className="Navbar__navLink" to={link.path} exact={link.exact}>
-                            {link.component.name}
+                            {link.name}
                         </NavLink>
                     </li>
                 ))}

@@ -1,73 +1,87 @@
 # Movie Watchlist (UI)
-=======
-# Getting Started with Create React App
+This is the user interface for my Watchlist application, which lets users find and save movies to watch later. Requires the watchlist-server repo and a postgres database to have full functionality.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+(Note: this is a work in progress. More features will be added over time.)
 
-## Available Scripts
+## Running the UI
+(Note: this application needs a server and a database to run properly. See below for instructions for running the full app.)
 
-In the project directory, you can run:
+To try the UI on its own:
 
-### `npm start`
+1. Clone this repository. (For instructions, see https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository)
+2. From the `watchlist-ui` folder, open a terminal and enter:
+    ```
+    npm install
+    ```
+3. Once all of the dependencies have been installed, enter the following into your terminal:
+    ```
+    npm start
+    ```
+4. In a web browser type `localhost:3000` in the address bar and press 'enter'. 
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## Running the whole Watchlist application
+The easiest way to try the full application is by using Docker.
 
-### `npm test`
+Requirements:
+- Docker install (https://docs.docker.com/get-docker/).
+- A free api key from  https://www.omdbapi.com/. (You can run the application without this step, but you won't be able to search for movies.)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Installation Steps:
+1. Create a folder on your computer called `watchlist` (or anything you like) and clone this repository into there. (For instructions, see https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository)
+2. From the `watchlist` folder, clone the Movie Watchlist (Server) repository from my GitHub (https://github.com/fugu137/watchlist-server).
+3. Create a file in the `watchlist` folder called `.env` and paste in the following:
+    ```
+    API_KEY=<Your key goes here>
+    ```
+    Replace `<Your key goes here>` with your api key.
+4. Create a file in the `watchlist` folder called `docker-compose.yml` and paste in the following:
+    ```
+    services:
 
-### `npm run build`
+    database:
+        container_name: database
+        image: postgres:14.1
+        ports:
+        - "5432:5432"
+        volumes:
+        - database-data:/var/lib/postgres/data
+        environment:
+        - POSTGRES_USER=admin
+        - POSTGRES_PASSWORD=Password123
+        - POSTGRES_DB=watchlist
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+    api:
+        build: ./watchlist-server/
+        ports:
+        - "8080:8080"
+        environment:
+        - spring.datasource.url=jdbc:postgresql://database:5432/watchlist
+        - spring.datasource.username=admin
+        - spring.datasource.password=Password123 
+        - API_KEY=${API_KEY}
+        links:
+        - database
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+    ui: 
+        build: ./watchlist-ui
+        ports: 
+        - "3000:80"
+        links:
+        - api
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+    volumes:
+    database-data:
+    ```
+    Save the file.
+5. Open a terminal and navigate to the `watchlist` folder. Type:
+    ```
+    sudo docker-compose up
+    ```
+    The first time around this will take a while, but subsequent lauches will be quick.
+6. Once the application has started, open a web browser and type `localhost:3000` in the address bar. Press 'enter' and you should see the application running.
+7. To stop the application, open a terminal, navigate to the `watchlist` folder, then type:
+    ```
+    sudo docker-compose down
+    ```
 

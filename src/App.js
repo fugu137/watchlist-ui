@@ -6,7 +6,6 @@ import LoginApi from './api/Login/loginApi';
 import Navbar from './components/Navbar/Navbar';
 import Home from './pages/Home/Home';
 import Login from './pages/Login/Login';
-import routes from './router/routes';
 import './App.css';
 
 axios.defaults.baseURL = process.env.REACT_APP_BASE_URL;
@@ -45,7 +44,7 @@ function App () {
     return (
         <div className="App" onClick={handleWindowClick}>
             <header className="App__header">
-                <Navbar links={routes} loggedIn={loginState.loggedInUser} logoutHandler={logout} />
+                <Navbar loggedIn={loginState.loggedInUser} logoutHandler={logout} />
             </header>
             <Switch>
                 <Route exact path="/">
