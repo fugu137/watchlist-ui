@@ -2,23 +2,28 @@ import { render, screen } from '@testing-library/react';
 import { MemoryRouter } from 'react-router';
 import Navbar from '../Navbar/Navbar';
 
+const links = [
+    {
+        path: '/',
+        exact: true,
+        component: {},
+        name: 'Component1',
+    },
+    {
+        path: '/login',
+        exact: true,
+        component: {},
+        name: 'Component2',
+    },
+];
+
+jest.mock('../../router/routes', () => links);
+
+
 describe('Navbar', () => {
     const username = 'Fred';
 
-    const links = [
-        {
-            path: '/',
-            exact: true,
-            component: { name: 'Component1' },
-        },
-        {
-            path: '/login',
-            exact: true,
-            component: { name: 'Component2' },
-        },
-    ];
-
-    describe('Not logged', () => {
+    describe('Not logged in', () => {
         beforeEach(() => {
             render(
                 <MemoryRouter>
