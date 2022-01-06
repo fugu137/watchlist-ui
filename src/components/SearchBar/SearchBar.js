@@ -70,7 +70,7 @@ function SearchBar ({ clickEvent, onMovieSave }) {
                         {results.map((result, index) => (
                             <li
                                 className="SearchBar__resultsItem"
-                                key={index}
+                                key={result.imdbID}
                                 id={result.imdbID}
                                 onClick={handleSearchItemClick}
                             >

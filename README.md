@@ -43,7 +43,7 @@ Installation Steps:
         container_name: database
         image: postgres:14.1
         ports:
-        - "5432:5432"
+        - "5444:5432"
         volumes:
         - database-data:/var/lib/postgres/data
         environment:
@@ -62,6 +62,7 @@ Installation Steps:
         - API_KEY=${API_KEY}
         links:
         - database
+        restart: on-failure
 
     ui: 
         build: ./watchlist-ui

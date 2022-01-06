@@ -18,9 +18,9 @@ function MovieList ({ movieState }) {
                 <p>No movies found...</p>
             ) : (
                 <ul className="MovieList__list">
-                    {movies.map((movie, index) => (
-                        <li className="MovieList__listItem" key={index}>
-                            {movie.title}
+                    {movies.map((movie) => (
+                        <li className="MovieList__listItem" key={movie.imdbID}>
+                            {movie.title + " (" + movie.imdbRating + ")"}
                         </li>
                     ))}
                 </ul>
