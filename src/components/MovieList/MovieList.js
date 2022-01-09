@@ -9,7 +9,7 @@ function MovieList ({ movieState }) {
     const error = movieState.error;
 
     if (!movies) {
-        return <p>{error}</p>
+        return <p>{error}</p>;
     }
 
     return (
@@ -20,7 +20,44 @@ function MovieList ({ movieState }) {
                 <ul className="MovieList__list">
                     {movies.map((movie) => (
                         <li className="MovieList__listItem" key={movie.imdbID}>
-                            {movie.title + " (" + movie.imdbRating + ")"}
+                            <img
+                                key={movie.imdbID + 'poster'}
+                                className="MovieList__poster"
+                                src={movie.posterURL}
+                                alt={'Poster from ' + movie.posterURL}
+                            />
+                            <article className="MovieList__listItem_details" key={movie.title + 'details'}>
+                                <h2 className="MovieList__listItem_heading">{movie.title}</h2>
+                                <ul>
+                                    <li className="MovieList__listItem_details_listItem" key={movie.imdbID + 'year'}>
+                                        {movie.year}
+                                    </li>
+                                    <li
+                                        className="MovieList__listItem_details_listItem"
+                                        key={movie.imdbID + 'synopsis'}
+                                    >
+                                        {movie.synopsis}
+                                    </li>
+                                    <li
+                                        className="MovieList__listItem_details_listItem"
+                                        key={movie.imdbID + 'imdbRating'}
+                                    >
+                                        {'IMDB: ' + movie.imdbRating}
+                                    </li>
+                                    <li
+                                        className="MovieList__listItem_details_listItem"
+                                        key={movie.imdbID + 'tomatoesRating'}
+                                    >
+                                        {'TOMATOES: ' + movie.tomatoesRating}
+                                    </li>
+                                    <li
+                                        className="MovieList__listItem_details_listItem"
+                                        key={movie.imdbID + 'metacriticRating'}
+                                    >
+                                        {'METACRITIC: ' + movie.metacriticRating}
+                                    </li>
+                                </ul>
+                            </article>
                         </li>
                     ))}
                 </ul>
