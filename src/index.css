@@ -35,7 +35,7 @@ main h1 {
 section {
     width: 90%;
     max-width: 1080px;
-    /* padding: 20px 0; */
+    padding: 20px 0;
 }
 
 button {

@@ -6,6 +6,7 @@ import LoginApi from './api/Login/loginApi';
 import Navbar from './components/Navbar/Navbar';
 import Home from './pages/Home/Home';
 import Login from './pages/Login/Login';
+import CreateAccount from './pages/CreateAccount/CreateAccount';
 import './App.css';
 
 axios.defaults.baseURL = process.env.REACT_APP_BASE_URL;
@@ -57,6 +58,9 @@ function App () {
                 </Route>
                 <Route exact path="/login">
                     <Login loginHandler={login} error={loginState.error} />
+                </Route>
+                <Route exact path="/createaccount">
+                    <CreateAccount/>
                 </Route>
             </Switch>
         </div>

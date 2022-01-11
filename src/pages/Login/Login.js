@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import '../../App.css';
 import './Login.css';
 
@@ -30,10 +31,7 @@ function Login ({ loginHandler, error }) {
             <h1>Login Page</h1>
             <section className="Login__form">
                 <form>
-                    <label
-                        className="Login__formLabel"
-                        forhtml="username-input"
-                    >
+                    <label className="Login__formLabel" forhtml="username-input">
                         Username:
                     </label>
                     <input
@@ -42,11 +40,8 @@ function Login ({ loginHandler, error }) {
                         type="text"
                         value={details.username}
                         onChange={(event) => updateDetails('username', event)}
-                    ></input>
-                    <label
-                        className="Login__formLabel"
-                        forhtml="password-input"
-                    >
+                    />
+                    <label className="Login__formLabel" forhtml="password-input">
                         Password:
                     </label>
                     <input
@@ -55,18 +50,15 @@ function Login ({ loginHandler, error }) {
                         type="password"
                         value={details.password}
                         onChange={(event) => updateDetails('password', event)}
-                    ></input>
-                    <button
-                        className="Login__formButton"
-                        onClick={handleLoginButtonClick}
-                    >
+                    />
+                    <button className="Login__formButton" onClick={handleLoginButtonClick}>
                         Login
                     </button>
-                    <div className="Login__formError">
-                        {' '}
-                        {error && active && error}
-                    </div>
+                    <div className="Login__formError"> {error && active && error}</div>
                 </form>
+                <Link className="Login__link" to="/createaccount">
+                    Don't have an account?
+                </Link>
             </section>
         </main>
     );

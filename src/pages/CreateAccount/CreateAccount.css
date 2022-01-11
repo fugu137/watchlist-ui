@@ -1,30 +1,30 @@
-.Login {
+.CreateAccount {
   
 }
 
-.Login__form {
+.CreateAccount__form {
     width: 280px;
 }
 
-.Login__formLabel {
+.CreateAccount__formLabel {
     display: block;
     width: 100%;
     text-align: left;
 }
 
-.Login__formInput {
+.CreateAccount__formInput {
     width: 100%;
     margin-bottom: 10px;
 }
 
-.Login__formError {
+.CreateAccount__formError {
     margin-top: 15px;
 }
 
-.Login__formButton {
+.CreateAccount__formButton {
     margin-top: 15px;
 }
 
-.Login__link {
+.CreateAccount__link {
     color: white;
 }
