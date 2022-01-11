@@ -4,26 +4,19 @@ import '../../App.css';
 import './Login.css';
 
 function Login ({ loginHandler, error }) {
-    const [active, setActive] = useState(false);
-
-    const [details, setDetails] = useState({
+    const [formDetails, setformDetails] = useState({
         username: 'Michael',
         password: 'Password123',
     });
 
-    useEffect(() => {
-        setActive(false);
-    }, []);
-
-    const updateDetails = (input, event) => {
+    const updateformDetails = (input, event) => {
         const data = { [input]: event.target.value };
-        setDetails((oldDetails) => ({ ...oldDetails, ...data }));
+        setformDetails((oldformDetails) => ({ ...oldformDetails, ...data }));
     };
 
     const handleLoginButtonClick = (event) => {
         event.preventDefault();
-        setActive(true);
-        loginHandler(details.username, details.password);
+        loginHandler(formDetails.username, formDetails.password);
     };
 
     return (
@@ -31,30 +24,30 @@ function Login ({ loginHandler, error }) {
             <h1>Login Page</h1>
             <section className="Login__form">
                 <form>
-                    <label className="Login__formLabel" forhtml="username-input">
+                    <label className="Login__formLabel" htmlFor="username-input">
                         Username:
                     </label>
                     <input
                         id="username-input"
                         className="Login__formInput"
                         type="text"
-                        value={details.username}
-                        onChange={(event) => updateDetails('username', event)}
+                        value={formDetails.username}
+                        onChange={(event) => updateformDetails('username', event)}
                     />
-                    <label className="Login__formLabel" forhtml="password-input">
+                    <label className="Login__formLabel" htmlFor="password-input">
                         Password:
                     </label>
                     <input
                         id="password-input"
                         className="Login__formInput"
                         type="password"
-                        value={details.password}
-                        onChange={(event) => updateDetails('password', event)}
+                        value={formDetails.password}
+                        onChange={(event) => updateformDetails('password', event)}
                     />
                     <button className="Login__formButton" onClick={handleLoginButtonClick}>
                         Login
                     </button>
-                    <div className="Login__formError"> {error && active && error}</div>
+                    <div className="Login__formError"> {error && error}</div>
                 </form>
                 <Link className="Login__link" to="/createaccount">
                     Don't have an account?

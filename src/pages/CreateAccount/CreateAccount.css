@@ -18,7 +18,13 @@
 }
 
 .CreateAccount__formError {
-    margin-top: 15px;
+    margin: 15px 0;
+    color: hsl(0, 80%, 50%);
+}
+
+.CreateAccount__formSuccess {
+    margin: 15px 0;
+    color: hsl(120, 80%, 50%);
 }
 
 .CreateAccount__formButton {

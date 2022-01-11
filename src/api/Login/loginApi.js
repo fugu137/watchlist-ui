@@ -4,11 +4,11 @@ const STORAGE_KEY = process.env.REACT_APP_STORAGE_KEY;
 
 const LoginApi = {
     login: async (username, password) => {
+        const url = '/login';
+
         const formData = new FormData();
         formData.append('username', username);
         formData.append('password', password);
-
-        const url = '/login';
 
         return await axios
             .post(url, formData)
