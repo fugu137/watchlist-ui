@@ -35,6 +35,7 @@ main h1 {
 section {
     width: 90%;
     max-width: 1080px;
+    margin: 10px 0;
     padding: 20px 0;
 }
 

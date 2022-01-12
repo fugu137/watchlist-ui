@@ -95,20 +95,53 @@ describe('MovieApi', () => {
             const response = await MovieApi.addMovie(id);
 
             expect(response.error).toBeNull();
-        });  
-        
+        });
+
         it('returns `movie already added` if movie already in watchlist', async () => {
-            axios.post.mockRejectedValue( { response: { status: 409 } } );
+            axios.post.mockRejectedValue({ response: { status: 409 } });
             const response = await MovieApi.addMovie(id);
 
             expect(response.error).toBe('Movie already added to watchlist.');
         });
 
         it('returns general error if movie cannot be added', async () => {
-            axios.post.mockRejectedValue( { response: { status: 500 } } );
+            axios.post.mockRejectedValue({ response: { status: 500 } });
             const response = await MovieApi.addMovie(id);
 
-            expect(response.error).toBe('Something went wrong. Movie cannot be added to watchlist.');
+            expect(response.error).toBe('Something went wrong. Movie could not be added to watchlist.');
+        });
+    });
+
+    describe('removeMovie', () => {
+        const url = '/movies/remove';
+        const id = 'fg12345';
+
+        it('makes call to /movies/remove endpoint', async () => {
+            axios.post.mockResolvedValueOnce({ status: 200 });
+            await MovieApi.removeMovie(id);
+
+            expect(axios.post).toHaveBeenCalledWith(url, { imdbID: id });
+        });
+
+        it('returns no error on success', async () => {
+            axios.post.mockResolvedValueOnce({ status: 200 });
+            const response = await MovieApi.removeMovie(id);
+
+            expect(response.error).toBeNull();
+        });
+
+        it('returns error if imdbID or account invalid', async () => {
+            axios.post.mockRejectedValueOnce({ response: { status: 409 } });
+            const response = await MovieApi.removeMovie(id);
+
+            expect(response.error).toBe('Bad request. Movie ID or account does not exist.');
+        });
+        
+        it('returns error if unable to remove movie', async () => {
+            axios.post.mockRejectedValueOnce({ response: { status: 500 } });
+            const response = await MovieApi.removeMovie(id);
+
+            expect(response.error).toBe('Something went wrong. Movie could not be removed from watchlist.');
         });
     });
 });

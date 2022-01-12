@@ -13,6 +13,10 @@ function Home ({ loggedIn, clickEvent }) {
         });
     }, []);
 
+    const removeMovie = useCallback((imdbID) => {
+        MovieApi.removeMovie(imdbID).then(() =>  loadMovies());
+    }, []);
+
     useEffect(() => {
         if (loggedIn) {
             loadMovies();
@@ -29,7 +33,7 @@ function Home ({ loggedIn, clickEvent }) {
             ) : (
                 <>
                     <SearchBar clickEvent={clickEvent} onMovieSave={loadMovies} />
-                    <MovieList movieState={movieState} />
+                    <MovieList movieState={movieState} onMovieDelete={removeMovie}/>
                 </>
             )}
         </main>

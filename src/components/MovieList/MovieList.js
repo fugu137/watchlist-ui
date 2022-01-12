@@ -1,12 +1,18 @@
+import DeleteIcon from '../../assests/icons/icons8-delete.svg';
 import '../MovieList/MovieList.css';
 
-function MovieList ({ movieState }) {
+
+function MovieList ({ movieState, onMovieDelete }) {
     if (!movieState) {
         return <p>"Loading..."</p>;
     }
 
     const movies = movieState.movies;
     const error = movieState.error;
+
+    const handleDeleteMovie = (imdbID) => {
+        onMovieDelete(imdbID);
+    }
 
     if (!movies) {
         return <p>{error}</p>;
@@ -28,6 +34,11 @@ function MovieList ({ movieState }) {
                             />
                             <article className="MovieList__listItem_content" key={movie.title + 'details'}>
                                 <h2 className="MovieList__listItem_heading">{movie.title}</h2>
+
+                                <button className="MovieList__closeButton" onClick={() => handleDeleteMovie(movie.imdbID)}>
+                                    <img className="MovieList__icon" src={DeleteIcon} alt="delete icon" />
+                                </button>
+                                
                                 <ul>
                                     <li className="MovieList__listItem_content_listItem" key={movie.imdbID + 'year'}>
                                         {movie.year}

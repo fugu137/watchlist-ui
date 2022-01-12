@@ -19,6 +19,8 @@
 .env.production.local
 /functional-tests/.env
 .prettierrc
+start.sh
+.gitignore
 
 npm-debug.log*
 yarn-debug.log*

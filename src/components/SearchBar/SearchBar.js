@@ -39,7 +39,8 @@ function SearchBar ({ clickEvent, onMovieSave }) {
         closeSearchResults();
         
         const imdbID = event.target.id;
-        await MovieApi.addMovie(imdbID);
+        const response = await MovieApi.addMovie(imdbID);
+        console.log(response)
 
         onMovieSave();
     };
@@ -67,7 +68,7 @@ function SearchBar ({ clickEvent, onMovieSave }) {
                 />
                 {results.length > 0 && (
                     <ul className="SearchBar__results">
-                        {results.map((result, index) => (
+                        {results.map((result) => (
                             <li
                                 className="SearchBar__resultsItem"
                                 key={result.imdbID}

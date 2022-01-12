@@ -25,9 +25,28 @@
     flex-grow: 1;
     height: 100%;
     padding: 20px;
+    position: relative;
 }
 
 .MovieList__listItem_content_listItem {
     list-style-type: none;
     margin: 15px 0;
+}
+
+.MovieList__closeButton {
+    border: 1px solid transparent;
+    border-radius: 10%;
+    background-color: transparent;
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.MovieList__closeButton:hover {
+    background-color: hsla(0, 0%, 100%, 20%);
 }
