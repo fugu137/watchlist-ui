@@ -1,4 +1,4 @@
-const { goto, text, link, click, button } = require('taiko');
+const { goto, text, link, click, button, into, textBox, write } = require('taiko');
 const assert = require('assert');
 
 step('Go to Watchlist website', async function () {
@@ -29,4 +29,15 @@ step('Login <username>', async function (username) {
 
 step('See text <expectedText>', async function (expectedText) {
     assert.ok(await text(expectedText).exists());
+});
+
+step('Search for and add <movieTitle> (<year>)', async function (movieTitle, year) {
+    const movieDetails = `${movieTitle} (${year})`;
+
+    await click(textBox({ placeholder: 'Search for a movie to add to your watchlist...' }));
+    await write(movieTitle);
+    await click(button('Search'));
+
+    assert.ok(await text(movieDetails).exists());
+    await click(movieDetails);
 });

@@ -5,25 +5,6 @@ set -e
 ROOT_DIR=$(pwd)
 PORT=3000
 
-
-# ui_running=false
-
-
-# start_ui() {
-#     echo "Checking if watchlist website is running..."
-
-#     PID="$(lsof -i tcp:$PORT | awk '{print $1, $2}' | grep node)" || true
-
-#     if [[ $PID != "" ]]
-#         then
-#             echo "Watchlist website is already running!"
-#             ui_running=true
-#         else
-#             echo "Starting watchlist website..."
-#             npm start &
-#     fi
-# }
-
 run_functional_tests() {
     echo "Running functional tests..."
 
@@ -31,14 +12,20 @@ run_functional_tests() {
     gauge run --verbose
 }
 
-# cleanup() {
-#     PID="$(lsof -i tcp:$PORT | awk '{print $1, $2}' | grep node)" || true
+start_app() {
+    echo "Starting application..."
+    cd $ROOT_DIR/functional-tests
+    sudo docker-compose up -d
 
-#     if [[ $ui_running ]]; then
-#         echo "Shutting down website..."
-#         kill $PID
-#     fi
-# }
+    sleep 12
+}
 
+stop_app() {
+    echo "Shutting down application..."
+    sudo docker-compose down
+}
 
-run_functional_tests
+start_app
+run_functional_tests || stop_app
+stop_app
+

@@ -3,8 +3,8 @@ This is the user interface for my Watchlist application, which lets users find a
 
 (Note: this is a work in progress. More features will be added over time.)
 
-## Running the UI
-(Note: this application needs a server and a database to run properly. See below for instructions for running the full app.)
+## Running the application
+*Note: this application needs a server and a database to be fully functional. See below for instructions for running the full app. (This is the recommended approach.)*
 
 To try the UI on its own:
 
@@ -19,15 +19,37 @@ To try the UI on its own:
     ```
 4. In a web browser type `localhost:3000` in the address bar and press 'enter'. 
 
+## Running the tests
+The Watchlist UI comes with a suite of automated tests, inlcuding both unit tests and functional (end-to-end) tests.
+
+### Unit tests
+To run the unit tests:
+```
+npm install
+npm test
+```
+### Functional tests
+To run the functional tests (which run in the browser), you will need docker installed (https://docs.docker.com/get-docker/). 
+To set up the tests, run:
+```
+cd functional-tests
+npm install
+```
+Then run:
+```
+./functional-tests.sh
+```
+from the root directory (i.e., the **watchlist-ui** directory).
+
 
 ## Running the whole Watchlist application
 The easiest way to try the full application is by using Docker.
 
-Requirements:
+### Requirements:
 - Docker install (https://docs.docker.com/get-docker/).
 - A free api key from  https://www.omdbapi.com/. (You can run the application without this step, but you won't be able to search for movies.)
 
-Installation Steps:
+### Installation Steps:
 1. Create a folder on your computer called `watchlist` (or anything you like) and clone this repository into there. (For instructions, see https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository)
 2. From the `watchlist` folder, clone the Movie Watchlist (Server) repository from my GitHub (https://github.com/fugu137/watchlist-server).
 3. Create a file in the `watchlist` folder called `.env` and paste in the following:

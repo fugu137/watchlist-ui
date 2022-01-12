@@ -1,0 +1,31 @@
+services:
+
+  database:
+    container_name: database
+    image: postgres:14.1
+    ports:
+      - "5444:5432"
+    environment:
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD=Password123
+      - POSTGRES_DB=watchlist
+
+  api:
+    build: ../../watchlist-server/
+    ports:
+      - "8080:8080"
+    environment:
+      - spring.datasource.url=jdbc:postgresql://database:5432/watchlist
+      - spring.datasource.username=admin
+      - spring.datasource.password=Password123 
+      - API_KEY=${API_KEY}
+    links:
+      - database
+    restart: on-failure
+
+  ui: 
+    build: ../
+    ports: 
+      - "3000:80"
+    links:
+      - api
