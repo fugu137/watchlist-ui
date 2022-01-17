@@ -30,7 +30,10 @@ describe('Create Account', () => {
 
         render(<CreateAccount />);
 
-        AccountApi.createAccount.mockResolvedValueOnce({ error: null });
+        AccountApi.createAccount.mockResolvedValueOnce({ 
+            accountCreated: true,
+            message:'Account successfully created.' 
+        });
 
         const usernameField = screen.getByLabelText('Username:');
         const passwordField = screen.getByLabelText('Password:');
@@ -47,18 +50,34 @@ describe('Create Account', () => {
     });
 
     it('should display success message if account created', async () => {
-    });
-
-    it('should display error message if cannot create an account', async () => {
-        const error = 'Test error message.';
+        const successMessage = 'Test success message.';
 
         render(<CreateAccount />);
 
-        AccountApi.createAccount.mockResolvedValueOnce({ error: error });
+        AccountApi.createAccount.mockResolvedValueOnce({  
+            accountCreated: true,
+            message: successMessage,  
+        });
 
         const button = screen.getByRole('button', { name: 'Create Account' });
         await waitFor(() => fireEvent.click(button));
 
-        expect(screen.getByText(error)).toBeInTheDocument();
+        expect(screen.getByText(successMessage)).toBeInTheDocument();
+    });
+
+    it('should display error message if cannot create an account', async () => {
+        const errorMessage = 'Test error message.';
+
+        render(<CreateAccount />);
+
+        AccountApi.createAccount.mockResolvedValueOnce({  
+            accountCreated: false,
+            message: errorMessage,  
+        });
+
+        const button = screen.getByRole('button', { name: 'Create Account' });
+        await waitFor(() => fireEvent.click(button));
+
+        expect(screen.getByText(errorMessage)).toBeInTheDocument();
     });
 });

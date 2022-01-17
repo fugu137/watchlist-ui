@@ -16,9 +16,13 @@ describe('AccountApi', () => {
         };
 
         axios.post.mockResolvedValueOnce({ status: 200 });
-        await AccountApi.createAccount(username, password, password);
+        const response = await AccountApi.createAccount(username, password, password);
 
         expect(axios.post).toHaveBeenCalledWith(url, details);
+        expect(response).toStrictEqual({
+            accountCreated: true,
+            message: 'Account successfully created.'
+        });
     });
 
     it('should not create an account when details are invalid', async () => {
@@ -30,7 +34,10 @@ describe('AccountApi', () => {
     it('should return an error if passwords don`t match', async () => {
         const response = await AccountApi.createAccount(username, password, 'differentPassword');
 
-        expect(response.error).toBe('Passwords don`t match. Please try again.');
+        expect(response).toStrictEqual({
+            accountCreated: false,
+            message: 'Passwords don`t match. Please try again.'
+        });
     });
 
     it('should return `username already exists` if username already exists', async () => {
@@ -38,7 +45,10 @@ describe('AccountApi', () => {
 
         const response = await AccountApi.createAccount(username, password, password);
 
-        expect(response.error).toBe('Username already exists. Please try again with a different username.');
+        expect(response).toStrictEqual({
+            accountCreated: false,
+            message: 'Username already exists. Please try again with a different username.'
+        });
     });
 
     it('should return a general error if the create account request fails', async () => {
@@ -46,6 +56,9 @@ describe('AccountApi', () => {
 
         const response = await AccountApi.createAccount(username, password, password);
 
-        expect(response.error).toBe('Something went wrong. Please try again later.');
+        expect(response).toStrictEqual({
+            accountCreated: false,
+            message: 'Something went wrong. Please try again later.'
+        });
     });
 });

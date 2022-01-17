@@ -5,7 +5,7 @@ import './CreateAccount.css';
 function CreateAccount () {
     const [status, setStatus] = useState({
         accountCreated: false,
-        error: null,
+        message: null,
     });
 
     const [formDetails, setformDetails] = useState({
@@ -65,8 +65,7 @@ function CreateAccount () {
                     <button className="CreateAccount__formButton" onClick={handleLoginButtonClick}>
                         Create Account
                     </button>
-                    <div className="CreateAccount__formError">{status.error && status.error}</div>
-                    <div className="CreateAccount__formSuccess">{status.accountCreated && 'Account created!'}</div>
+                    <div className={status.accountCreated ? "CreateAccount__formSuccess" : "CreateAccount__formError"}>{status.message && status.message}</div>
                 </form>
             </section>
         </main>

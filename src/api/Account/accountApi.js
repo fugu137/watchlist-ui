@@ -7,7 +7,7 @@ const AccountApi = {
         if (password !== repeat) {
             return { 
                 accountCreated: false,
-                error: 'Passwords don`t match. Please try again.' 
+                message: 'Passwords don`t match. Please try again.' 
             };
         }
 
@@ -21,19 +21,19 @@ const AccountApi = {
             .then(() => {
                 return { 
                     accountCreated: true,
-                    error: null 
+                    message: 'Account successfully created.' 
                 };
             })
             .catch((error) => {
                 if (error.response && error.response.status === 409) {
                     return {
                         accountCreated: false,
-                        error: 'Username already exists. Please try again with a different username.',
+                        message: 'Username already exists. Please try again with a different username.',
                     }
                 }
                 return {
                     accountCreated: false,
-                    error: 'Something went wrong. Please try again later.',
+                    message: 'Something went wrong. Please try again later.',
                 };
             });
     },
