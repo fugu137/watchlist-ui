@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import '../../App.css';
 import './Login.css';
@@ -47,7 +47,7 @@ function Login ({ loginHandler, error }) {
                     <button className="Login__formButton" onClick={handleLoginButtonClick}>
                         Login
                     </button>
-                    <div className="Login__formError"> {error && error}</div>
+                    <div className="Login__formError">{error && error}</div>
                 </form>
                 <Link className="Login__link" to="/createaccount">
                     Don't have an account?

@@ -26,6 +26,9 @@
     height: 100%;
     padding: 20px;
     position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .MovieList__listItem_content_listItem {

@@ -51,21 +51,11 @@ function MovieList ({ movieState, onMovieDelete }) {
                                     </li>
                                     <li
                                         className="MovieList__listItem_content_listItem"
-                                        key={movie.imdbID + 'imdbRating'}
+                                        key={movie.imdbID + 'ratings'}
                                     >
-                                        {'IMDB: ' + movie.imdbRating}
-                                    </li>
-                                    <li
-                                        className="MovieList__listItem_content_listItem"
-                                        key={movie.imdbID + 'tomatoesRating'}
-                                    >
-                                        {'TOMATOES: ' + movie.tomatoesRating}
-                                    </li>
-                                    <li
-                                        className="MovieList__listItem_content_listItem"
-                                        key={movie.imdbID + 'metacriticRating'}
-                                    >
-                                        {'METACRITIC: ' + movie.metacriticRating}
+                                        {movie.imdbRating && 'IMDB: ' + movie.imdbRating}
+                                        {movie.tomatoesRating && ' - TOMATOES: ' + movie.tomatoesRating}
+                                        {movie.metacriticRating && ' - METACRITIC: ' + movie.metacriticRating}
                                     </li>
                                 </ul>
                             </article>
