@@ -80,22 +80,15 @@ describe('Home', () => {
 
             expect(await screen.findByText('Movie1')).toBeInTheDocument();
             expect(await screen.findByText('2000')).toBeInTheDocument();
-            expect(await screen.findByText('IMDB: 6.6')).toBeInTheDocument();
-            expect(await screen.findByText('TOMATOES: 66%')).toBeInTheDocument();
-            expect(await screen.findByText('METACRITIC: 60%')).toBeInTheDocument();
+            expect(await screen.findByText('IMDB: 6.6 - TOMATOES: 66% - METACRITIC: 60%')).toBeInTheDocument();
 
             expect(await screen.findByText('Movie2')).toBeInTheDocument();
             expect(await screen.findByText('2001')).toBeInTheDocument();
-            expect(await screen.findByText('IMDB: 8.6')).toBeInTheDocument();
-            expect(await screen.findByText('TOMATOES: 86%')).toBeInTheDocument();
-            expect(await screen.findByText('METACRITIC: 80%')).toBeInTheDocument();
+            expect(await screen.findByText('IMDB: 8.6 - TOMATOES: 86% - METACRITIC: 80%')).toBeInTheDocument();
 
             expect(await screen.findByText('Movie3')).toBeInTheDocument();
             expect(await screen.findByText('2002')).toBeInTheDocument();
-            expect(await screen.findByText('IMDB: 9.1')).toBeInTheDocument();
-            expect(await screen.findByText('TOMATOES: 98%')).toBeInTheDocument();
-            expect(await screen.findByText('METACRITIC: 90%')).toBeInTheDocument();
-
+            expect(await screen.findByText('IMDB: 9.1 - TOMATOES: 98% - METACRITIC: 90%')).toBeInTheDocument();
         });
 
         it('displays error message if movie list cannot be retrieved', async () => {
