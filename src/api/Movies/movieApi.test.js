@@ -102,6 +102,13 @@ describe('MovieApi', () => {
             const response = await MovieApi.addMovie(id);
 
             expect(response.error).toBe('Movie already added to watchlist.');
+        }); 
+        
+        it('returns `movie does not exist in OMDB database` if movie not found in OMDB database', async () => {
+            axios.post.mockRejectedValue({ response: { status: 404 } });
+            const response = await MovieApi.addMovie(id);
+
+            expect(response.error).toBe('Movie does not exist in OMDB database.');
         });
 
         it('returns general error if movie cannot be added', async () => {

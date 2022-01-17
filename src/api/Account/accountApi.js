@@ -24,7 +24,13 @@ const AccountApi = {
                     error: null 
                 };
             })
-            .catch(() => {
+            .catch((error) => {
+                if (error.response && error.response.status === 409) {
+                    return {
+                        accountCreated: false,
+                        error: 'Username already exists. Please try again with a different username.',
+                    }
+                }
                 return {
                     accountCreated: false,
                     error: 'Something went wrong. Please try again later.',

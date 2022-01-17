@@ -1,5 +1,5 @@
 import axios from 'axios';
-import AccountApi from "./accountApi";
+import AccountApi from './accountApi';
 
 jest.mock('axios');
 
@@ -25,16 +25,24 @@ describe('AccountApi', () => {
         await AccountApi.createAccount(username, password, 'differentPassword');
 
         expect(axios.post).not.toHaveBeenCalled();
-    }); 
-    
+    });
+
     it('should return an error if passwords don`t match', async () => {
         const response = await AccountApi.createAccount(username, password, 'differentPassword');
 
         expect(response.error).toBe('Passwords don`t match. Please try again.');
-    }); 
-    
-    it('should return an error if the create account request fails', async () => {
-        axios.post.mockRejectedValueOnce({ status: 500 });
+    });
+
+    it('should return `username already exists` if username already exists', async () => {
+        axios.post.mockRejectedValueOnce({ response: { status: 409 } });
+
+        const response = await AccountApi.createAccount(username, password, password);
+
+        expect(response.error).toBe('Username already exists. Please try again with a different username.');
+    });
+
+    it('should return a general error if the create account request fails', async () => {
+        axios.post.mockRejectedValueOnce({ response: { status: 500 } });
 
         const response = await AccountApi.createAccount(username, password, password);
 
