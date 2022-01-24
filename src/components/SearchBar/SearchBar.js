@@ -40,7 +40,6 @@ function SearchBar ({ clickEvent, onMovieSave }) {
         
         const imdbID = event.target.id;
         const response = await MovieApi.addMovie(imdbID);
-        console.log(response)
 
         onMovieSave();
     };
