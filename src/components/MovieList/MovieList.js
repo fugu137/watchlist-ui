@@ -1,7 +1,6 @@
 import DeleteIcon from '../../assests/icons/icons8-delete.svg';
 import '../MovieList/MovieList.css';
 
-
 function MovieList ({ movieState, onMovieDelete }) {
     if (!movieState) {
         return <p>"Loading..."</p>;
@@ -12,7 +11,7 @@ function MovieList ({ movieState, onMovieDelete }) {
 
     const handleDeleteMovie = (imdbID) => {
         onMovieDelete(imdbID);
-    }
+    };
 
     if (!movies) {
         return <p>{error}</p>;
@@ -34,11 +33,16 @@ function MovieList ({ movieState, onMovieDelete }) {
                             />
                             <article className="MovieList__listItem_content" key={movie.title + 'details'}>
                                 <h2 className="MovieList__listItem_heading">{movie.title}</h2>
-
-                                <button className="MovieList__closeButton" onClick={() => handleDeleteMovie(movie.imdbID)}>
-                                    <img className="MovieList__icon" src={DeleteIcon} alt="delete icon" />
-                                </button>
                                 
+                                <button
+                                    className="MovieList__closeButton"
+                                    onClick={() => handleDeleteMovie(movie.imdbID)}
+                                >
+                                    <svg className="MovieList__icon" viewBox="0 0 24 24" alt="delete icon">
+                                        <path d="M 10 2 L 9 3 L 3 3 L 3 5 L 4.109375 5 L 5.8925781 20.255859 L 5.8925781 20.263672 C 6.023602 21.250335 6.8803207 22 7.875 22 L 16.123047 22 C 17.117726 22 17.974445 21.250322 18.105469 20.263672 L 18.107422 20.255859 L 19.890625 5 L 21 5 L 21 3 L 15 3 L 14 2 L 10 2 z M 6.125 5 L 17.875 5 L 16.123047 20 L 7.875 20 L 6.125 5 z" />
+                                    </svg>
+                                </button>
+
                                 <ul>
                                     <li className="MovieList__listItem_content_listItem" key={movie.imdbID + 'year'}>
                                         {movie.year}
@@ -49,10 +53,7 @@ function MovieList ({ movieState, onMovieDelete }) {
                                     >
                                         {movie.synopsis}
                                     </li>
-                                    <li
-                                        className="MovieList__listItem_content_listItem"
-                                        key={movie.imdbID + 'ratings'}
-                                    >
+                                    <li className="MovieList__listItem_content_listItem" key={movie.imdbID + 'ratings'}>
                                         {movie.imdbRating && 'IMDB: ' + movie.imdbRating}
                                         {movie.tomatoesRating && ' - TOMATOES: ' + movie.tomatoesRating}
                                         {movie.metacriticRating && ' - METACRITIC: ' + movie.metacriticRating}

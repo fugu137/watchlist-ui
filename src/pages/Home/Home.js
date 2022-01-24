@@ -1,7 +1,7 @@
-import { useEffect, useState, useCallback } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import MovieApi from '../../api/Movies/movieApi';
-import SearchBar from '../../components/SearchBar/SearchBar';
 import MovieList from '../../components/MovieList/MovieList';
+import SearchBar from '../../components/SearchBar/SearchBar';
 import '../Home/Home.css';
 
 function Home ({ loggedIn, clickEvent }) {
@@ -13,9 +13,12 @@ function Home ({ loggedIn, clickEvent }) {
         });
     }, []);
 
-    const removeMovie = useCallback((imdbID) => {
-        MovieApi.removeMovie(imdbID).then(() =>  loadMovies());
-    }, []);
+    const removeMovie = useCallback(
+        (imdbID) => {
+            MovieApi.removeMovie(imdbID).then(() => loadMovies());
+        },
+        [loadMovies]
+    );
 
     useEffect(() => {
         if (loggedIn) {
@@ -33,7 +36,7 @@ function Home ({ loggedIn, clickEvent }) {
             ) : (
                 <>
                     <SearchBar clickEvent={clickEvent} onMovieSave={loadMovies} />
-                    <MovieList movieState={movieState} onMovieDelete={removeMovie}/>
+                    <MovieList movieState={movieState} onMovieDelete={removeMovie} />
                 </>
             )}
         </main>

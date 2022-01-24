@@ -1,8 +1,10 @@
 .App {
+  --backgroundColor: hsl(229, 27%, 15%);
   text-align: center;
   color: white;
   /* border: 1px solid cyan; */
-  height: 100vh;
+  height: 100%;
+  background-color: var(--backgroundColor);
 }
 
 /* .App-logo {

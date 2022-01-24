@@ -53,19 +53,13 @@ describe('MovieList', () => {
         expect(within(movieList).getByAltText('Poster from www.movie3.posterURL.com')).toBeInTheDocument();
 
         const movie1Details = within(movieList).getAllByRole('list')[0];
-        expect(within(movie1Details).getByText('IMDB: 8.2')).toBeInTheDocument();
-        expect(within(movie1Details).getByText('TOMATOES: 80%')).toBeInTheDocument();
-        expect(within(movie1Details).getByText('METACRITIC: 78%')).toBeInTheDocument();
+        expect(within(movie1Details).getByText('IMDB: 8.2 - TOMATOES: 80% - METACRITIC: 78%')).toBeInTheDocument();
 
         const movie2Details = within(movieList).getAllByRole('list')[1];
-        expect(within(movie2Details).getByText('IMDB: 2.2')).toBeInTheDocument();
-        expect(within(movie2Details).getByText('TOMATOES: 31%')).toBeInTheDocument();
-        expect(within(movie2Details).getByText('METACRITIC: 20%')).toBeInTheDocument();
+        expect(within(movie2Details).getByText('IMDB: 2.2 - TOMATOES: 31% - METACRITIC: 20%')).toBeInTheDocument();
 
         const movie3Details = within(movieList).getAllByRole('list')[2];
-        expect(within(movie3Details).getByText('IMDB: 5.3')).toBeInTheDocument();
-        expect(within(movie3Details).getByText('TOMATOES: 40%')).toBeInTheDocument();
-        expect(within(movie3Details).getByText('METACRITIC: 48%')).toBeInTheDocument();
+        expect(within(movie3Details).getByText('IMDB: 5.3 - TOMATOES: 40% - METACRITIC: 48%')).toBeInTheDocument();
     });
 
     it('displays loading message if moviesStatus not defined', async () => {
