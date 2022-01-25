@@ -1,3 +1,5 @@
+import themes from '../src/themes/themes.module.css';
+
 export const parameters = {
     actions: { argTypesRegex: '^on[A-Z].*' },
     controls: {
@@ -15,8 +17,16 @@ export const parameters = {
             },
             {
                 name: 'Midnight',
-                value: '#1c2031'
+                value: '#1c2031',
             },
         ],
     },
 };
+
+export const decorators = [
+    (Story) => (
+        <div className={themes.midnight}>
+            <Story />
+        </div>
+    ),
+];

@@ -1,18 +1,11 @@
+import { ComponentMeta, ComponentStory } from '@storybook/react';
 import React from 'react';
-import { ComponentStory, ComponentMeta } from '@storybook/react';
-
 import Button from './Button';
 
+
 export default {
-    title: 'Example/Button',
+    title: 'Basic Components/Button',
     component: Button,
-    decorators: [(Story) => {
-        return (
-            <div style={{ padding: '0px' }}>
-                <Story />
-            </div>
-        );
-    }]
 
 } as ComponentMeta<typeof Button>;
 

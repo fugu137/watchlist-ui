@@ -1,0 +1,9 @@
+@import './common.css';
+
+.white {
+    --text-colour: black;
+}
+
+.midnight {
+    --text-colour: white;
+}

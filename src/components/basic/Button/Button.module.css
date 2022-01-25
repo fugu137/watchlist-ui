@@ -1,31 +1,32 @@
-@import '../../../themes.css';
-
-.primary {
+.button {
     font-weight: bold;
     border-style: solid;
     border-width: 1px;
     border-radius: 3px;
     color: white;
-    border-color: var(--blue-medium);
-    background-color: var(--blue-medium);
     cursor: pointer;
 }
 
+.primary {
+    border-color: var(--primary-colour-medium);
+    background-color: var(--primary-colour-medium);
+}
+
 .secondary {
-    composes: primary;
-    border-color: var(--green-medium);
-    background-color: var(--green-medium);
+    border-color: var(--secondary-colour-medium);
+    background-color: var(--secondary-colour-medium);
 }
 
 .regular {
-    height: 32px;
+    font-size: var(--font-size-medium);
+    height: var(--element-height-regular);
     padding: 0 15px;
     margin: 10px;
 }
 
 .large {
-    font-size: 18px;
-    height: 40px;
+    font-size: var(--font-size-large);
+    height: var(--element-height-large);
     padding: 0 18px;
     margin: 12px;
 }
@@ -37,23 +38,23 @@
 } 
 
 .primary:hover:not(:disabled) {
-    border-color: var(--blue-dark);
-    background-color: var(--blue-dark);
+    border-color: var(--primary-colour-dark);
+    background-color: var(--primary-colour-dark);
 }
 
 .primary:active:not(:disabled) {
-    border-color: var(--blue-medium);
-    background-color: var(--blue-medium);
+    border-color: var(--primary-colour-medium);
+    background-color: var(--primary-colour-medium);
 }
 
 .secondary:hover:not(:disabled) {
-    border-color: var(--green-dark);
-    background-color: var(--green-dark);
+    border-color: var(--secondary-colour-dark);
+    background-color: var(--secondary-colour-dark);
 }
 
 .secondary:active:not(:disabled) {
-    border-color: var(--green-medium);
-    background-color: var(--green-medium);
+    border-color: var(--secondary-colour-medium);
+    background-color: var(--secondary-colour-medium);
 }
 
 

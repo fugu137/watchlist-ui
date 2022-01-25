@@ -1,0 +1,16 @@
+.wrapper {
+    margin: 10px;
+}
+
+.label {
+    display: block;
+    font-weight: bold;
+    font-size: var(--font-size-medium);
+    color: var(--text-colour);
+    margin-bottom: 5px;
+}
+
+.input {
+    height: var(--element-height-regular);
+    width: 480px;
+}

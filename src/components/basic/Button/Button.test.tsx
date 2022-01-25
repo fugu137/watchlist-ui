@@ -5,7 +5,7 @@ const onClickMock = jest.fn();
 
 describe('Button', () => {
     it('should render text', () => {
-        render(<Button text="text" variant="primary" />)
+        render(<Button text="text" variant="primary" />);
 
         expect(screen.getByRole('button')).toHaveTextContent("text");
     });
@@ -17,7 +17,7 @@ describe('Button', () => {
     });
 
     it('should be disabled if disabled = true', () => {
-        render(<Button text="text" variant="primary" disabled />)
+        render(<Button text="text" variant="primary" disabled />);
 
         expect(screen.getByRole('button')).toBeDisabled();
     });
