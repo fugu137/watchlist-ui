@@ -1,22 +1,27 @@
-import { ReactElement } from "react"
+import { ChangeEvent, ReactElement } from "react";
 import styles from './TextField.module.css';
 
-type InputType = 'text' | 'email' | 'number' | 'password';
 
-type Props<T> = {
-    /** Sets the type of the text field. */
-    type: T;
-    /** Sets the label text if provided. */
-    label?: T extends 'number' ? number : string;
-    /** Sets placeholder text if provided. */
+type Props = {
+     /** Sets the type of the text field. */
+    type: 'text' | 'email' | 'password';
+     /** Sets the label text if provided. */
+    label?: string;
+    /** Sets the text content. */
+    value?: string;
+    /** Sets an error message if provided. */
+    error?: string;
+    /** Sets an onChange function. */
+    onChange?: (event: ChangeEvent<HTMLInputElement>) => void;
 }
 
-function TextField({ type, label }: Props<InputType>): ReactElement {
+function TextField({ type, label, value, error, onChange }: Props): ReactElement {
     return (
-        <div className={styles.wrapper}>
-            {label && <label className={styles.label}>{label}</label>}
-            <input type={type} className={styles.input}></input>
-        </div>
+        <figure className={styles.textField}>
+            <label className={styles.label}>{label}</label>
+            <input type={type} value={value} onChange={onChange} className={styles.input} />
+            <figcaption className={styles.error}>{error}</figcaption>
+        </figure>
     );
 }
 

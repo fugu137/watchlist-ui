@@ -28,14 +28,6 @@ Secondary.args = {
     disabled: false,
 }
 
-export const Large = Template.bind({});
-Large.args = {
-    text: 'Primary Large',
-    variant: 'primary',
-    size: 'large',
-    disabled: false,
-};
-
 export const Disabled = Template.bind({});
 Disabled.args = {
     text: 'Disabled',
@@ -44,4 +36,10 @@ Disabled.args = {
     disabled: true,
 }
 
-
+export const Large = Template.bind({});
+Large.args = {
+    text: 'Primary Large',
+    variant: 'primary',
+    size: 'large',
+    disabled: false,
+};

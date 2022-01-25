@@ -1,5 +1,5 @@
-.wrapper {
-    margin: 10px;
+.textField {
+    width: 480px;
 }
 
 .label {
@@ -12,5 +12,13 @@
 
 .input {
     height: var(--element-height-regular);
-    width: 480px;
+    font-size: var(--font-size-medium);
+    width: 100%;
+    padding: 0 0.5em;
+}
+
+.error {
+    font-size: var(--font-size-small);
+    color: rgb(255, 19, 66);
+    margin: 5px;
 }
