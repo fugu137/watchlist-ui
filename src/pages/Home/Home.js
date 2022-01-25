@@ -40,7 +40,7 @@ function Home ({ loggedIn, clickEvent }) {
                     <MovieList movieState={movieState} onMovieDelete={removeMovie} />
                 </>
             )}
-            <Button text="hello"/>
+            <Button text="hello" variant="primary"/>
         </main>
     );
 }

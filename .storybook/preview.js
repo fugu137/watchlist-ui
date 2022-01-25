@@ -6,14 +6,17 @@ export const parameters = {
             date: /Date$/,
         },
     },
+    backgrounds: {
+        default: 'Midnight',
+        values: [
+            {
+                name: 'White',
+                value: '#fffff',
+            },
+            {
+                name: 'Midnight',
+                value: '#1c2031'
+            },
+        ],
+    },
 };
-
-export const decorators = [
-  (Story) => {
-      return (
-          <div style={{ margin: '20px' }}>
-              <Story />
-          </div>
-      );
-  },
-];

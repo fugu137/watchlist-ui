@@ -1,43 +1,59 @@
-.button {
+@import '../../../themes.css';
+
+.primary {
     font-weight: bold;
-    height: 32px;
-    padding: 0 15px;
     border-style: solid;
     border-width: 1px;
     border-radius: 3px;
     color: white;
+    border-color: var(--blue-medium);
+    background-color: var(--blue-medium);
     cursor: pointer;
 }
 
-.primary {
-    border-color: hsl(225, 73%, 57%);
-    background-color: hsl(225, 73%, 57%);
-}
-
-.primary:hover {
-    background-color: hsl(225, 73%, 52%);
-}
-
-.primary:active {
-    background-color:hsl(225, 73%, 57%);
-}
-
 .secondary {
-    border-color: hsl(120, 61%, 34%);
-    background-color: hsl(120, 61%, 34%);
+    composes: primary;
+    border-color: var(--green-medium);
+    background-color: var(--green-medium);
 }
 
-.secondary:hover {
-    background-color: hsl(120, 61%, 29%);
+.regular {
+    height: 32px;
+    padding: 0 15px;
+    margin: 10px;
 }
 
-.secondary:active {
-    background-color: hsl(120, 61%, 34%);
+.large {
+    font-size: 18px;
+    height: 40px;
+    padding: 0 18px;
+    margin: 12px;
 }
 
 .disabled {
-    filter: grayscale(0.33);
-    opacity: 0.66;
+    filter: grayscale(0.3);
+    opacity: 0.7;
     cursor: not-allowed;
+} 
+
+.primary:hover:not(:disabled) {
+    border-color: var(--blue-dark);
+    background-color: var(--blue-dark);
 }
+
+.primary:active:not(:disabled) {
+    border-color: var(--blue-medium);
+    background-color: var(--blue-medium);
+}
+
+.secondary:hover:not(:disabled) {
+    border-color: var(--green-dark);
+    background-color: var(--green-dark);
+}
+
+.secondary:active:not(:disabled) {
+    border-color: var(--green-medium);
+    background-color: var(--green-medium);
+}
+
 

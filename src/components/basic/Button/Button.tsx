@@ -8,6 +8,9 @@ type Props = {
     /** Sets the button variant (determines the style of the button) */
     variant: 'primary' | 'secondary';
 
+    /** Sets the size of the button */
+    size: 'regular' | 'large'
+
     /** Optional click handler */
     onClick?: MouseEventHandler<HTMLButtonElement>;
 
@@ -15,12 +18,11 @@ type Props = {
     disabled?: boolean;
 }
 
-function Button({ text, variant, onClick, disabled = false }: Props): ReactElement {
-    const styleList = [styles.button, styles[variant]];
-    disabled && styleList.push(styles.disabled);
-    
+function Button({ text, variant, size = 'regular', onClick, disabled = false }: Props): ReactElement {
+    const style = `${styles[variant]} ${styles[size]} ${disabled ? styles.disabled : ''}`;
+
     return (
-        <button className={styleList.join(' ')} onClick={onClick} disabled={disabled}>
+        <button className={style} onClick={onClick} disabled={disabled}>
             {text}
         </button>
     );
