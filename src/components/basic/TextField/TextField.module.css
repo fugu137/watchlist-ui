@@ -1,5 +1,8 @@
 .textField {
+    --error-message-width: 180px;
+    --input-padding: calc(var(--font-size-medium) / 2);
     width: 480px;
+    position: relative;
 }
 
 .label {
@@ -14,11 +17,23 @@
     height: var(--element-height-regular);
     font-size: var(--font-size-medium);
     width: 100%;
-    padding: 0 0.5em;
+    padding-left: var(--input-padding);
+    padding-right: var(--error-message-width);
+    border: 1px solid rgba(0, 0, 0, 0.5);
+    border-radius: 3px;
 }
 
 .error {
     font-size: var(--font-size-small);
     color: rgb(255, 19, 66);
-    margin: 5px;
+    text-align: right;
+    position: absolute;
+    bottom: calc(var(--element-height-regular) / 2);
+    transform: translateY(50%);
+    right: var(--input-padding);
+    width: calc(var(--error-message-width) - var(--input-padding));
+}
+
+.input.invalid {
+    outline: 1px solid rgb(255, 19, 66);
 }

@@ -1,5 +1,6 @@
-import { ComponentStory, ComponentMeta } from '@storybook/react';
-import { ChangeEvent, useState } from 'react';
+import { useArgs } from '@storybook/client-api';
+import { ComponentMeta, ComponentStory } from '@storybook/react';
+import { ChangeEvent } from 'react';
 import TextField from './TextField';
 
 export default {
@@ -9,26 +10,26 @@ export default {
 } as ComponentMeta<typeof TextField>;
 
 const Template: ComponentStory<typeof TextField> = (args) => {
-    const [value, setValue] = useState(args.value);
+    const [_, updateArgs] = useArgs();
 
     const onChange = (event: ChangeEvent<HTMLInputElement>) => {
-       setValue(event.currentTarget.value);
+        updateArgs({ value: event.currentTarget.value });
     }
 
-    return <TextField type={args.type} value={value} label={args.label} error={args.error} onChange={onChange} />;
+    return <TextField type={args.type} value={args.value} label={args.label} error={args.error} onChange={onChange} />;
 }
 
 
 export const Basic = Template.bind({});
 Basic.args = {
     type: 'text',
-    value: 'Valid text content',
+    value: 'Text content',
 };
 
 export const Label = Template.bind({});
 Label.args = {
     type: 'text',
-    value: 'Valid text content',
+    value: 'Text content',
     label: 'Label',
 };
 
@@ -37,11 +38,11 @@ export const Invalid = Template.bind({});
 Invalid.args = {
     type: 'text',
     value: 'Invalid text content',
-    error: 'Invalid entry!',
+    error: 'Invalid entry',
 };
 
 export const Password = Template.bind({});
 Password.args = {
     type: 'password',
-    value: 'Valid text content',
+    value: 'Password123',
 };
