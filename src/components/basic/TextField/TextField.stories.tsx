@@ -3,14 +3,16 @@ import { ComponentMeta, ComponentStory } from '@storybook/react';
 import { ChangeEvent } from 'react';
 import TextField from './TextField';
 
+
 export default {
     title: 'Basic Components/TextField',
     component: TextField,
 
 } as ComponentMeta<typeof TextField>;
 
+
 const Template: ComponentStory<typeof TextField> = (args) => {
-    const [_, updateArgs] = useArgs();
+    const [, updateArgs] = useArgs();
 
     const onChange = (event: ChangeEvent<HTMLInputElement>) => {
         updateArgs({ value: event.currentTarget.value });

@@ -1,7 +1,8 @@
 .textField {
     --error-message-width: 180px;
+    --error-message-colour: rgb(255, 19, 66);
     --input-padding: calc(var(--font-size-medium) / 2);
-    width: 480px;
+    width: 500px;
     position: relative;
 }
 
@@ -10,7 +11,7 @@
     font-weight: bold;
     font-size: var(--font-size-medium);
     color: var(--text-colour);
-    margin-bottom: 5px;
+    padding-left: 2px;
 }
 
 .input {
@@ -19,13 +20,13 @@
     width: 100%;
     padding-left: var(--input-padding);
     padding-right: var(--error-message-width);
-    border: 1px solid rgba(0, 0, 0, 0.5);
+    border: 1px solid rgba(0, 0, 0, 0.3);
     border-radius: 3px;
 }
 
 .error {
     font-size: var(--font-size-small);
-    color: rgb(255, 19, 66);
+    color: var(--error-message-colour);
     text-align: right;
     position: absolute;
     bottom: calc(var(--element-height-regular) / 2);
@@ -34,6 +35,13 @@
     width: calc(var(--error-message-width) - var(--input-padding));
 }
 
-.input.invalid {
-    outline: 1px solid rgb(255, 19, 66);
+/* .input.invalid {
+    outline: 2px solid var(--error-message-colour);
+} */
+
+.errorIcon {
+    fill: var(--error-message-colour);
+    width: calc(var(--element-height-regular) / 2.1);
+    height: calc(var(--element-height-regular) / 2.1);
+    margin-right: 4px;
 }

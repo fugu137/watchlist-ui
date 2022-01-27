@@ -2,8 +2,12 @@
 
 .white {
     --text-colour: black;
+    --hover-background-colour: hsla(0, 0%, 70%, 20%);
+    --active-background-colour: hsla(0, 0%, 80%, 20%);
 }
 
 .midnight {
     --text-colour: white;
+    --hover-background-colour: hsla(0, 0%, 100%, 20%);
+    --active-background-colour: hsla(0, 0%, 80%, 20%);
 }

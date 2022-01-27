@@ -1,4 +1,4 @@
-import themes from '../src/themes/themes.module.css';
+import ThemeProvider from "./ThemeDecorator";
 
 export const parameters = {
     actions: { argTypesRegex: '^on[A-Z].*' },
@@ -23,10 +23,6 @@ export const parameters = {
     },
 };
 
-export const decorators = [
-    (Story) => (
-        <div className={themes.midnight}>
-            <Story />
-        </div>
-    ),
-];
+export const decorators = [ThemeProvider];
+
+

@@ -1,11 +1,11 @@
 :root {
     /* Primary Colour */
     --primary-colour-medium: hsl(225, 73%, 57%);
-    --primary-colour-dark: hsl(225, 73%, 54%);
+    --primary-colour-dark: hsl(225, 73%, 53%);
 
     /* Secondary Colour */
     --secondary-colour-medium: hsl(120, 61%, 34%);
-    --secondary-colour-dark: hsl(120, 61%, 31%);
+    --secondary-colour-dark: hsl(120, 61%, 30%);
 
     /* Fonts */
     --font-size-small: 13px;
@@ -14,7 +14,7 @@
     font-family: 'Cantarell', sans-serif;
 
     /* Geometry */
-    --element-height-regular: 32px;
+    --element-height-regular: 33px;
     --element-height-large: 42px;
 }
 

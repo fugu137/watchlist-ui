@@ -1,0 +1,22 @@
+.button {
+    border: 1px solid transparent;
+    border-radius: 10%;
+    background-color: transparent;
+    width: var(--element-height-regular);
+    height: var(--element-height-regular);
+    cursor: pointer;
+}
+
+.button:hover {
+    background-color: var(--hover-background-colour);
+}
+
+.button:active {
+    background-color: var(--active-background-colour);
+}
+
+.icon {
+    fill: var(--text-colour);
+    width: 24px;
+    height: 24px;
+}
