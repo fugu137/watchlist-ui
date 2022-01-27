@@ -32,7 +32,7 @@ export const Label = Template.bind({});
 Label.args = {
     type: 'text',
     value: 'Text content',
-    label: 'Label',
+    label: 'Label:',
 };
 
 
