@@ -1,0 +1,43 @@
+.loader {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    column-gap: 15px;
+    height: var(--element-height-regular);
+    padding: 0 10px;
+}
+
+.dot {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: var(--text-colour);
+    animation: pulse 1s infinite ease-in-out;
+}
+
+.dot1 {
+    composes: dot;
+    animation-delay: 0s;
+}
+
+.dot2 {
+    composes: dot;
+    animation-delay: 0.25s;
+}
+
+.dot3 {
+    composes: dot;
+    animation-delay: 0.5s;
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(0%);
+        opacity: 0.25;
+    }
+    90% {
+        transform: scale(100%);
+        opacity: 0.75;
+    }
+}
