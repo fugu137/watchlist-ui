@@ -10,9 +10,11 @@
     /* Fonts */
     --font-size-xsmall: 13px;
     --font-size-small: 14px;
-    --font-size-medium: 15px;
-    --font-size-large: 20px;
-    font-family: 'Cantarell', sans-serif;
+    --font-size-medium: 16px;
+    --font-size-large: 20px; 
+    --font-size-xlarge: 28px;
+    --font-size-xxlarge: 34px;
+    font-family: 'Open Sans', sans-serif;
 
     /* Geometry */
     --element-height-regular: 34px;

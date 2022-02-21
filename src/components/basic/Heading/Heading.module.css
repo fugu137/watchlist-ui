@@ -1,0 +1,18 @@
+.h {
+    color: var(--text-colour);
+}
+
+.h1 {
+    composes: h;
+    font-size: var(--font-size-xxlarge);
+}
+
+.h2 {
+    composes: h;
+    font-size: var(--font-size-xlarge);
+}
+
+.h3 {
+    composes: h;
+    font-size: var(--font-size-large);
+}

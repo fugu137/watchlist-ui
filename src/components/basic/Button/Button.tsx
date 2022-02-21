@@ -1,12 +1,12 @@
 import { MouseEventHandler, ReactElement } from 'react';
-import styles from '../Button/Button.module.css';
+import styles from './Button.module.css';
 
 type Props = {
     /** Sets the text content of the button */
     text: string;
 
-    /** Sets the button variant (determines the style of the button) */
-    variant: 'primary' | 'secondary';
+    /** Sets the button type (determines the style of the button) */
+    type: 'primary' | 'secondary';
 
     /** Sets the size of the button. Defaults to regular */
     size?: 'regular' | 'large'
@@ -18,8 +18,8 @@ type Props = {
     disabled?: boolean;
 }
 
-function Button({ text, variant, size = 'regular', onClick, disabled = false }: Props): ReactElement {
-    const style = `${styles.button} ${styles[variant]} ${styles[size]} ${disabled ? styles.disabled : ''}`;
+function Button({ text, type, size = 'regular', onClick, disabled = false }: Props): ReactElement {
+    const style = `${styles.button} ${styles[type]} ${styles[size]} ${disabled ? styles.disabled : ''}`;
 
     return (
         <button className={style} onClick={onClick} disabled={disabled}>

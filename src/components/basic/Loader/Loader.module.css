@@ -13,7 +13,7 @@
     height: 10px;
     border-radius: 50%;
     background-color: var(--text-colour);
-    animation: pulse 1s infinite ease-in-out;
+    animation: pulse 1.25s infinite ease-in-out;
 }
 
 .dot1 {

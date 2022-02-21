@@ -15,7 +15,7 @@ const Template: ComponentStory<typeof Button> = (args) => <Button {...args} />;
 export const Primary = Template.bind({});
 Primary.args = {
     text: 'Primary',
-    variant: 'primary',
+    type: 'primary',
     size: 'regular',
     disabled: false,
 };
@@ -23,7 +23,7 @@ Primary.args = {
 export const Secondary = Template.bind({});
 Secondary.args = {
     text: 'Secondary',
-    variant: 'secondary',
+    type: 'secondary',
     size: 'regular',
     disabled: false,
 }
@@ -31,7 +31,7 @@ Secondary.args = {
 export const Disabled = Template.bind({});
 Disabled.args = {
     text: 'Disabled',
-    variant: 'primary',
+    type: 'primary',
     size: 'regular',
     disabled: true,
 }
@@ -39,7 +39,7 @@ Disabled.args = {
 export const Large = Template.bind({});
 Large.args = {
     text: 'Primary Large',
-    variant: 'primary',
+    type: 'primary',
     size: 'large',
     disabled: false,
 };
