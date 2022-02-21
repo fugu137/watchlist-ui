@@ -28,8 +28,8 @@ Basic.args = {
     value: 'Text content',
 };
 
-export const Label = Template.bind({});
-Label.args = {
+export const Labelled = Template.bind({});
+Labelled.args = {
     type: 'text',
     value: 'Text content',
     label: 'Label:',
