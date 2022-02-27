@@ -20,7 +20,7 @@
 .regular {
     font-size: var(--font-size-medium);
     height: var(--element-height-regular);
-    padding: 0 14px;
+    padding: 0 13px;
 }
 
 .large {

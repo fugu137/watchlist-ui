@@ -14,10 +14,10 @@
     --font-size-large: 20px; 
     --font-size-xlarge: 28px;
     --font-size-xxlarge: 34px;
-    font-family: 'Open Sans', sans-serif;
+    font-family: 'Cantarell', sans-serif;
 
     /* Geometry */
-    --element-height-regular: 34px;
+    --element-height-regular: 33px;
     --element-height-large: 42px;
 }
 

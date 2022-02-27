@@ -14,11 +14,11 @@ export default {
 const Template: ComponentStory<typeof TextField> = (args) => {
     const [, updateArgs] = useArgs();
 
-    const onChange = (event: ChangeEvent<HTMLInputElement>) => {
+    const changeHandler = (event: ChangeEvent<HTMLInputElement>) => {
         updateArgs({ value: event.currentTarget.value });
     }
 
-    return <TextField type={args.type} value={args.value} label={args.label} error={args.error} onChange={onChange} />;
+    return <TextField {...args} onChange={changeHandler} />;
 }
 
 
